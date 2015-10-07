@@ -3,7 +3,7 @@
 
 ---
 
-Une kiné-ostéopathe nous a contacté pour nous soumettre une problématique nécessitant nos compétences en infirmatique. En 20 ans de pratique, elle a l'impression que les pathologies (exemple : problèmes d'épaules) surviennent plus fréquemment lors de certaines périodes de l'année et cela de façon récurrente.
+Une kiné-ostéopathe nous a contacté pour nous soumettre une problématique nécessitant nos compétences en informatique. En 20 ans de pratique, elle a l'impression que les pathologies (exemple : problèmes d'épaules) surviennent plus fréquemment lors de certaines périodes de l'année et cela de façon récurrente.
 
 Ce projet est innovant car selon elle, il peut améliorer la qualité de ses consultations avec ses patients, la prévention et le suivi avec les médecins.
 
