@@ -14,3 +14,16 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::controller('utilisateurpatient', 'UtilisateurpatientController');
+Route::controller('utilisateuradmin', 'UtilisateuradminController');
+Route::controller('activite', 'ActiviteController');
+Route::controller('alimentation', 'AlimentationController');
+Route::controller('consultation', 'ConsultationController');
+Route::controller('douleur', 'DouleurController');
+Route::controller('evenement', 'EvenementController');
+Route::controller('maladiechronique', 'MaladiechroniqueController');
+Route::controller('mesure', 'MesureController');
+Route::controller('operation', 'OperationController');
+Route::controller('profession', 'ProfessionController');
+Route::controller('ville', 'VilleController');
