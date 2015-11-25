@@ -1,11 +1,8 @@
 <?php
 
-
 namespace App\Repositories;
 
-
 use App\UtilisateurPatient;
-
 
 class UtilisateurPatientRepository extends ResourceRepository
 {
