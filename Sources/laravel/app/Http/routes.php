@@ -15,7 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::controller('utilisateurpatient', 'UtilisateurpatientController');
+//Route::controller('utilisateurpatient', 'UtilisateurpatientController');
+Route::resource('utilisateurpatient', 'UtilisateurpatientController');
+Route::get('utilisateurpatient.show', 'UtilisateurpatientControllerController@show');
+Route::get('utilisateurpatient/{all}', 'UtilisateurpatientControllerController@edit');
+Route::get('utilisateurpatient.destroy', 'UtilisateurpatientControllerController@destroy');
+Route::get('utilisateurpatient.create', 'UtilisateurpatientControllerController@create');
+
 Route::controller('utilisateuradmin', 'UtilisateuradminController');
 Route::controller('activite', 'ActiviteController');
 Route::controller('alimentation', 'AlimentationController');

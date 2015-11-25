@@ -26,7 +26,7 @@ class CreateUtilisateurPatientTable extends Migration
             $table->integer('masse_osseuse')->nullable();
             $table->integer('heures_travaillees')->nullable();
             $table->integer('nbr_enfants')->nullable();
-            $table->enum('situation_familiale', ['Célibataire', 'En Couple', 'Marié(e)', 'Pacsé(e)', 'Divorcé(e)']);
+            $table->enum('situation_familiale', ['Célibataire', 'En Couple', 'Marié(e)', 'Pacsé(e)', 'Divorcé(e)'])->nullable();
         });
     }
 

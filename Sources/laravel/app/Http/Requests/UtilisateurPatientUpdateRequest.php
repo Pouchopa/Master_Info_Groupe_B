@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class UtilisateurAdminRequest extends Request
+class UtilisateurPatientUpdateRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,12 +23,14 @@ class UtilisateurAdminRequest extends Request
      */
     public function rules()
     {
+        $id = $this->segment(2);
+
         return [
-            'pseudo' => 'required|alpha_num|between:5,20|unique:utilisateur_admin|unique:utilisateur_patient',
-            'mot_de_passe' => 'required|alpha_num|min:5',
-            'nom' => 'required|alpha_dash|min:2',
-            'prenom' => 'required|alpha_dash',
-            'email' => 'required|email|unique:utilisateur_patient|unique:utilisateur_admin'
+
+            'nom' => 'required|max:255,nom,' . $id,
+
+            'email' => 'required|email|max:255|unique:utilisateur_patient,email,' . $id
+
         ];
     }
 }

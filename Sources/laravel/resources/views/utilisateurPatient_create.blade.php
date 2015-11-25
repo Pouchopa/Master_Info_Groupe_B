@@ -13,7 +13,7 @@
 
             <div class="panel-body"> 
 
-                {!! Form::open(array('url' => 'utilisateurpatient/form')) !!}
+                {!! Form::open(['url' => 'utilisateurpatient', 'method' => 'post', 'class' => 'form-horizontal panel']) !!} 
 
                     <div class="form-group {!! $errors->has('pseudo') ? 'has-error' : '' !!}">
 

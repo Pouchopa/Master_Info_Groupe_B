@@ -3,43 +3,23 @@
 
 @section('contenu')
 
-    <br>
-
     <div class="col-sm-offset-4 col-sm-4">
 
-        <div class="panel panel-info">
+        <br>
 
-            <div class="panel-heading">Inscription d'un utilisateur</div>
+        <div class="panel panel-primary">   
+
+            <div class="panel-heading">Modification d'un utilisateur</div>
 
             <div class="panel-body"> 
 
-                {!! Form::open(array('url' => 'utilisateurpatient/form')) !!}
+                <div class="col-sm-12">
 
-                    <div class="form-group {!! $errors->has('pseudo') ? 'has-error' : '' !!}">
-
-                        {!! Form::label('pseudo', 'Pseudo* :') !!}
-
-                        {!! Form::text('pseudo', null, array('class' => 'form-control', 'placeholder' => 'Entrez votre pseudo')) !!}
-
-                        {!! $errors->first('pseudo', '<small class="help-block">:message</small>') !!}
-
-                    </div>
-
-                    <div class="form-group {!! $errors->has('mot_de_passe') ? 'has-error' : '' !!}">
-
-                        {!! Form::label('mot_de_passe', 'Mot de passe* :') !!}
-
-                        {!! Form::password('mot_de_passe', null, array('class' => 'form-control', 'placeholder' => 'Entrez votre mot de passe')) !!}
-
-                        {!! $errors->first('mot_de_passe', '<small class="help-block">:message</small>') !!}
-
-                    </div>
+                    {!! Form::model($utilisateurPatient, ['route' => ['utilisateurpatient.update', $utilisateurPatient->id], 'method' => 'put', 'class' => 'form-horizontal panel']) !!}
 
                     <div class="form-group {!! $errors->has('nom') ? 'has-error' : '' !!}">
 
-                        {!! Form::label('nom', 'Nom* :') !!}
-
-                        {!! Form::text('nom', null, array('class' => 'form-control', 'placeholder' => 'Entrez votre nom')) !!}
+                        {!! Form::text('nom', null, ['class' => 'form-control', 'placeholder' => 'Nom']) !!}
 
                         {!! $errors->first('nom', '<small class="help-block">:message</small>') !!}
 
@@ -47,47 +27,41 @@
 
                     <div class="form-group {!! $errors->has('prenom') ? 'has-error' : '' !!}">
 
-                        {!! Form::label('prenom', 'Prénom* :') !!}
-
-                        {!! Form::text('prenom', null, array('class' => 'form-control', 'placeholder' => 'Entrez votre prénom')) !!}
+                        {!! Form::text('prenom', null, ['class' => 'form-control', 'placeholder' => 'Prénom']) !!}
 
                         {!! $errors->first('prenom', '<small class="help-block">:message</small>') !!}
 
                     </div>
 
-                    <div class="form-group {!! $errors->has('sexe') ? 'has-error' : '' !!}">
+                    <div class="form-group {!! $errors->has('email') ? 'has-error' : '' !!}">
 
-                            {!! Form::label('sexe', 'Sexe* :') !!}
+                        {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Email']) !!}
 
-                            {!! Form::radio('sexe', 'H') !!}
+                        {!! $errors->first('email', '<small class="help-block">:message</small>') !!}
 
-                            {!! Form::label('Homme') !!}
+                    </div>
 
-                            {!! Form::radio('sexe', 'F') !!}
+                    <div class="form-group">
 
-                            {!! Form::label('Femme') !!}
+                        <div class="checkbox">
 
-                        {!! $errors->first('sexe', '<small class="help-block">:message</small>') !!}
+                            <label>
+                                {!! Form::checkbox('sexe', 'H') !!}Homme
+                            </label>
+
+                            <label>
+                                {!! Form::checkbox('sexe', 'F') !!}Femme
+                            </label>
+
+                        </div>
 
                     </div>
 
                     <div class="form-group {!! $errors->has('date_naissance') ? 'has-error' : '' !!}">
 
-                        {!! Form::label('date_naissance', 'Date de naissance* :') !!}
-
-                        {!! Form::date('date_naissance', null, array('class' => 'form-control', 'placeholder' => 'Entrez votre date de naissance au format aaaa-mm-jj')) !!}
+                        {!! Form::date('date_naissance', null, ['class' => 'form-control', 'placeholder' => 'Date de naissance']) !!}
 
                         {!! $errors->first('date_naissance', '<small class="help-block">:message</small>') !!}
-
-                    </div>
-
-                    <div class="form-group {!! $errors->has('email') ? 'has-error' : '' !!}">
-
-                        {!! Form::label('email', 'E-mail* :') !!}
-
-                        {!! Form::email('email', null, array('class' => 'form-control', 'placeholder' => 'Entrez votre email')) !!}
-
-                        {!! $errors->first('email', '<small class="help-block">:message</small>') !!}
 
                     </div>
 
@@ -158,13 +132,21 @@
 
                     </div>
 
-                    {!! Form::submit('Envoyer !', array('class' => 'btn btn-info pull-right')) !!}
+                    {!! Form::submit('Envoyer', ['class' => 'btn btn-primary pull-right']) !!}
 
-                {!! Form::close() !!}
+                    {!! Form::close() !!}
+
+                </div>
 
             </div>
 
         </div>
+
+        <a href="javascript:history.back()" class="btn btn-primary">
+
+            <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
+
+        </a>
 
     </div>
 
