@@ -1,14 +1,12 @@
-Ces instruction concernent le projet /Sources/medicalanage.fr
-
-1- composer self-update
-2- composer update
-3- modification /conf/database.php: 
+- chmod -R 777 storage
+- composer self-update
+- composer update
+- modification /conf/database.php: 
 	    'database'  => env('DB_DATABASE', 'votreNomBase'),
             'username'  => env('DB_USERNAME', 'votrePseudo'),
             'password'  => env('DB_PASSWORD', 'votrePass'),
-4- modification .env:
+- modification .env:
 		DB_DATABASE=votreNomBase
 		DB_USERNAME=votrePseudo
 		DB_PASSWORD=votrePass
-
-5- php artisan migrate
+- php artisan migrate
