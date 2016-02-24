@@ -5,7 +5,7 @@
 
     <br>
 
-    <div class="col-sm-offset-4 col-sm-4">
+    <div class="col-sm-offset-3 col-sm-6">
 
         @if(session()->has('ok'))
 
@@ -17,7 +17,7 @@
 
             <div class="panel-heading">
 
-                <h3 class="panel-title">Liste des utilisateurs</h3>
+                <h3 class="panel-title">Information de l'utilisateur</h3>
 
             </div>
 
@@ -30,6 +30,8 @@
                         <th>#</th>
 
                         <th>Nom</th>
+
+                        <th>Prénom</th>
 
                         <th></th>
 
@@ -51,11 +53,13 @@
 
                             <td class="text-primary"><strong>{!! $utilisateurPatient->nom !!}</strong></td>
 
+                            <td class="text-primary"><strong>{!! $utilisateurPatient->prenom !!}</strong></td>
+
                             <td>{!! link_to_route('utilisateurpatient.show', 'Voir', [$utilisateurPatient->id], ['class' => 'btn btn-success btn-block']) !!}</td>
 
                             <td>{!! link_to_route('utilisateurpatient.edit', 'Modifier', [$utilisateurPatient->id], ['class' => 'btn btn-warning btn-block']) !!}</td>
 
-                            <td>
+                            <!--<td>
 
                                 {!! Form::open(['method' => 'DELETE', 'route' => ['utilisateurpatient.destroy', $utilisateurPatient->id]]) !!}
 
@@ -63,7 +67,7 @@
 
                                 {!! Form::close() !!}
 
-                            </td>
+                            </td> !-->
 
                         </tr>
 
@@ -74,8 +78,6 @@
             </table>
 
         </div>
-
-        {!! link_to_route('utilisateurpatient.create', 'Ajouter un utilisateur', [], ['class' => 'btn btn-info pull-right']) !!}
 
         {!! $links !!}
 

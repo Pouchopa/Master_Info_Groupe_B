@@ -1,7 +1,7 @@
-@extends('template')
+@extends('appl')
 
 
-@section('contenu')
+@section('content')
 
     <div class="col-sm-offset-4 col-sm-4">
 
@@ -69,7 +69,7 @@
 
                         {!! Form::label('taux_de_graisse', 'Taux de graisse :') !!}
 
-                        {!! Form::number('taux_de_graisse', null) !!}
+                        {!! Form::number('taux_de_graisse', null, ['min' => '0'], ['max' => '100']) !!}
 
                         {!! $errors->first('taux_de_graisse', '<small class="help-block">:message</small>') !!}
 
@@ -79,7 +79,7 @@
 
                         {!! Form::label('taux_de_muscle', 'Taux de muscle :') !!}
 
-                        {!! Form::number('taux_de_muscle', null) !!}
+                        {!! Form::number('taux_de_muscle', null, ['min' => '0'], ['max' => '100']) !!}
 
                         {!! $errors->first('taux_de_muscle', '<small class="help-block">:message</small>') !!}
 
@@ -89,7 +89,7 @@
 
                         {!! Form::label('masse_osseuse', 'Masse osseuse :') !!}
 
-                        {!! Form::number('masse_osseuse', null) !!}
+                        {!! Form::number('masse_osseuse', null, ['min' => '0']) !!}
 
                         {!! $errors->first('masse_osseuse', '<small class="help-block">:message</small>') !!}
 
@@ -99,7 +99,7 @@
 
                         {!! Form::label('heures_travaillees', "Nombre d'heures travaillées :") !!}
 
-                        {!! Form::number('heures_travaillees', null) !!}
+                        {!! Form::number('heures_travaillees', null, ['min' => '0']) !!}
 
                         {!! $errors->first('heures_travaillees', '<small class="help-block">:message</small>') !!}
 
@@ -109,7 +109,7 @@
 
                         {!! Form::label('nbr_enfants', "Nombre d'enfants :") !!}
 
-                        {!! Form::number('nbr_enfants', null) !!}
+                        {!! Form::number('nbr_enfants', null, ['min' => '0']) !!}
 
                         {!! $errors->first('nbr_enfants', '<small class="help-block">:message</small>') !!}
 
@@ -131,6 +131,50 @@
                         {!! $errors->first('situation_familiale', '<small class="help-block">:message</small>') !!}
 
                     </div>
+
+                    <div class="form-group {!! $errors->has('profession_id') ? 'has-error' : '' !!}">
+
+                        {!! Form::label('profession_id', "Profession :") !!}
+
+                        {!! Form::select('profession_id', array(
+                            'Choississez votre profession',
+                            '0' => 'Inconnue',
+                            '1' => 'Informaticien'
+                            )) !!}
+
+                        {!! $errors->first('profession_id', '<small class="help-block">:message</small>') !!}
+
+                    </div>
+
+                    <div class="form-group {!! $errors->has('ville_id') ? 'has-error' : '' !!}">
+
+                        {!! Form::label('ville_id', "Ville :") !!}
+
+                        {!! Form::select('ville_id', array(
+                            'Choississez votre profession',
+                            '0' => 'Inconnue',
+                            '4' => 'Plobsheim'
+                            )) !!}
+
+                        {!! $errors->first('ville_id', '<small class="help-block">:message</small>') !!}
+
+                    </div>
+
+                <h4> Activités sportives </h4>
+                {!! link_to_route('activite.create', 'Ajouter une activité sportive') !!}
+
+                <h4> Evènements </h4>
+                {!! link_to_route('evenement.create', 'Ajouter un évènement') !!}
+
+                <h4> Alimentation </h4>
+                {!! link_to_route('alimentation.create', 'Ajouter une alimentation') !!}
+
+                <h4> Maladie </h4>
+                {!! link_to_route('maladiechronique.create', 'Ajouter une maladie') !!}
+
+                <h4> Opération </h4>
+                {!! link_to_route('operation.create', 'Ajouter une opération') !!}
+
 
                     {!! Form::submit('Envoyer', ['class' => 'btn btn-primary pull-right']) !!}
 

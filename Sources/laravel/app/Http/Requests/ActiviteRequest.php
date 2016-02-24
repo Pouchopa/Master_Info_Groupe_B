@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
+
 class ActiviteRequest extends Request
 {
     /**
@@ -13,7 +14,7 @@ class ActiviteRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,7 @@ class ActiviteRequest extends Request
     public function rules()
     {
         return [
-            'libelle_activite' => 'required|alpha_dash|unique:activite',
+            'libelle_activite' => 'required|alpha_spaces|unique:activite',
             'description_activite' => 'required'
         ];
     }

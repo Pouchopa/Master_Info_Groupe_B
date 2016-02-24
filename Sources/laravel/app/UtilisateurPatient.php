@@ -5,12 +5,14 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class UtilisateurPatient extends Model implements AuthenticatableContract, CanResetPasswordContract
+class UtilisateurPatient extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
-	use Authenticatable, CanResetPassword;
+	use Authenticatable, Authorizable, CanResetPassword;
 
 	/**
      * The database table used by the model.
@@ -34,7 +36,7 @@ class UtilisateurPatient extends Model implements AuthenticatableContract, CanRe
      * @var array
      */
 
-    protected $hidden = ['mot_de_passe', 'remember_token'];
+    protected $hidden = ['mot_de_passe'];
 
     public $timestamps = false;
 

@@ -1,45 +1,113 @@
 <?php
 
-
 namespace App\Http\Controllers;
 
-
 use App\Profession;
-
 use App\Http\Requests\ProfessionRequest;
-
+use App\Repositories\ProfessionRepository;
+use App\Http\Requests\ProfessionUpdateRequest;
 
 class ProfessionController extends Controller
 
 {
 
+    protected $professionRepository;
 
-    public function getForm()
+    protected $nbrPerPage = 4;
 
+    public function __construct(ProfessionRepository $professionRepository)
     {
-
-        return view('profession');
-
+        $this->professionRepository = $professionRepository;
     }
 
-
-    public function postForm(ProfessionRequest $request, Profession $profession)
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
+        $professions = $this->professionRepository->getPaginate($this->nbrPerPage);
 
-        $profession->libelle_profession = $request->input('libelle_profession');
+        $links = $professions->setPath('')->render();
 
-        $profession->stress_physique = $request->input('stress_physique');
-
-        $profession->stress_psychique = $request->input('stress_psychique');
-
-        $profession->posture_travail = $request->input('posture_travail');
-
-        $profession->save();
-
-        return view('profession_ok');
-
+        return view('profession_index', compact('professions', 'links'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('profession_create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(ProfessionRequest $request)
+    {
+        $profession = $this->professionRepository->store($request->all());
+
+        return redirect('profession')->withOk("La profession " . $profession->libelle_profession . " a été créée.");
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $profession = $this->professionRepository->getById($id);
+
+        return view('profession_show',  compact('profession'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $profession = $this->professionRepository->getById($id);
+
+        return view('profession_edit',  compact('profession'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(professionUpdateRequest $request, $id)
+    {
+        $this->professionRepository->update($id, $request->all());
+
+        return redirect('profession')->withOk("La profession " . $request->input('libelle_profession') . " a été modifiée.");
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $this->professionRepository->destroy($id);
+
+        return redirect()->back();
+    }
 
 }

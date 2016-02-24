@@ -13,11 +13,13 @@
 
             <div class="panel-body"> 
 
+                <h4>Informations personnelles </h4>
+
                 <p>Pseudo : {{ $utilisateurPatient->pseudo }}</p>
 
                 <p>Nom : {{ $utilisateurPatient->nom }}</p>
 
-                <p>Prénom : {{ $utilisateurPatient->nom }}</p>
+                <p>Prénom : {{ $utilisateurPatient->prenom }}</p>
 
                 @if($utilisateurPatient->sexe == 'H')
                     <p>Sexe : Homme</p>
@@ -51,6 +53,52 @@
                     <p>Situation familiale : {{ $utilisateurPatient->situation_familiale }}</p>
                 @endif
 
+                <p>Profession : 
+                    @if($profession != null)
+                        {{ $profession->libelle_profession }}
+                    @else
+                        Inconnue
+                    @endif
+                </p>
+
+                <p>Ville : 
+                    @if($ville != null)
+                        {{ $ville->nom_ville }}
+                    @else
+                        Inconnue
+                    @endif
+                </p>
+
+                <h4> Activités sportives </h4>
+
+                <h4> Evènements </h4>
+                @if($evenementPatient != null)
+                    <ul>
+                            <li>{{ $evenementPatient->date_evenement }} : {{ $evenement->libelle_evenement }}</li>
+                    </ul>
+                @else
+                    Aucun évènement enregistré.
+                @endif
+
+                <h4> Alimentation </h4>
+
+                <h4> Maladie </h4>
+                @if($maladiePatient != null)
+                    <ul>
+                        <li>{{ $maladiePatient->date_maladie }} : {{ $maladie->libelle_maladie }}</li>
+                    </ul>
+                @else
+                    Aucune maladie enregistrée.
+                @endif    
+
+                <h4> Opération </h4>
+                @if($operationPatient != null)
+                    <ul>
+                        <li>{{ $operationPatient->date_operation }} : {{ $operation->libelle_operation }}</li>
+                    </ul>
+                @else
+                    Aucune opération enregistrée.
+                @endif
             </div>
 
         </div>              

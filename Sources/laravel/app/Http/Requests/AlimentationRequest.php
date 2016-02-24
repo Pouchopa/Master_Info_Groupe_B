@@ -24,7 +24,7 @@ class AlimentationRequest extends Request
     public function rules()
     {
         return [
-            'libelle_alimentation' => 'required|alpha_dash|unique:alimentation',
+            'libelle_alimentation' => 'required|alpha_spaces|unique:alimentation',
             'description_alimentation' => 'required'
         ];
     }

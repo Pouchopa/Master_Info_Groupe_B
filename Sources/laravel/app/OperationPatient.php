@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class OperationPatient extends Model
 {
-    protected $table = 'mesure_patient';
+    protected $table = 'operation_patient';
 
     public $timestamps = false;
 }

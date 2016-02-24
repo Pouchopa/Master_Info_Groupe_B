@@ -137,4 +137,15 @@ return [
         'size' => 'Taille',
     ],
 
+
+/*
+|--------------------------------------------------------------------------
+| Custom Validation Rules
+|--------------------------------------------------------------------------
+|
+| Custom rules created in app/validators.php
+|
+*/
+"alpha_spaces"     => "Le champ :attribute doit seulement contenir des lettres et des espaces.",
+
 ];
