@@ -200,7 +200,7 @@ return array(
 
 		/*
 		 * sleeping owl
-		 */
+		*/
 		'Admin'             => 'SleepingOwl\Admin\Admin',
 		'AdminAuth'         => 'SleepingOwl\AdminAuth\Facades\AdminAuth',
 		'AdminRouter'       => 'SleepingOwl\Admin\Facades\AdminRouter',
