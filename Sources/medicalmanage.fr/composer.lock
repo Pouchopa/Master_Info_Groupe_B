@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e01ba52a910dee2b8a197b1be1d188d9",
-    "content-hash": "6c5bf31ef276c36af2a388f7a9f47c1e",
+    "hash": "01cd87f87a92a97b54cf584d56151c9a",
+    "content-hash": "42fdad02e340036afba2b4486c2b6689",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -677,16 +677,16 @@
         },
         {
             "name": "intervention/image",
-            "version": "2.3.5",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Intervention/image.git",
-                "reference": "9f29360b8ab94585cb9e80cf9045abd5b85feb89"
+                "reference": "86dfe2f2a95aa9eed58faf1cc1dae6534a6ce931"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Intervention/image/zipball/9f29360b8ab94585cb9e80cf9045abd5b85feb89",
-                "reference": "9f29360b8ab94585cb9e80cf9045abd5b85feb89",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/86dfe2f2a95aa9eed58faf1cc1dae6534a6ce931",
+                "reference": "86dfe2f2a95aa9eed58faf1cc1dae6534a6ce931",
                 "shasum": ""
             },
             "require": {
@@ -735,7 +735,7 @@
                 "thumbnail",
                 "watermark"
             ],
-            "time": "2016-01-02 19:15:13"
+            "time": "2016-01-10 11:20:02"
         },
         {
             "name": "intervention/imagecache",
@@ -2710,7 +2710,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "intervention/image": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

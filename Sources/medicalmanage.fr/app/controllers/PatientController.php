@@ -189,6 +189,14 @@ class PatientController extends BaseController {
             $user->prenom = Input::get('prenom');
             $user->sexe = Input::get('sexe');
             $user->date_naissance = Input::get('date_naissance');
+            if (Input::hasFile('avatar'))
+            {
+                $destinationPath = public_path() . '/images/patients/';
+                $filename = Input::file('avatar')->getClientOriginalName();
+                Input::file('avatar')->move($destinationPath, $filename);
+                $image = Image::make(sprintf($destinationPath.'%s', $filename))->resize(120, 120)->save();
+                $user->photo = $filename;
+            }
 		    $user->save();
 
 		    return Redirect::to('auth/login')->with('message', 'Votre inscription a été validée !');

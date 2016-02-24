@@ -14,6 +14,7 @@
             <div class="panel-body"> 
 
                 <p>Pseudo : {{ $patient->pseudo }}</p>
+                <img src="{{ URL::to('/') }}/images/patients/{{$patient->photo }}" />
 
                 <p>Nom : {{ $patient->nom }}</p>
 

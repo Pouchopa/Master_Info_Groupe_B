@@ -18,7 +18,14 @@
 						</div>
 					@endif
 
-					<form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
+					<form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}" enctype="multipart/form-data">
+
+						<div class="form-group">
+							<label class="col-md-4 control-label">Avatar</label>
+							<div class="col-md-6">
+								{{ Form::file('avatar', null, ['class' => 'form-control']) }}
+							</div>
+						</div>
 
 						<div class="form-group">
 							<label class="col-md-4 control-label">Pseudo</label>
