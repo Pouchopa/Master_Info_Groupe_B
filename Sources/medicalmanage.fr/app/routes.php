@@ -18,3 +18,4 @@ Route::get('/', function()
 
 Route::controller('auth', 'PatientController');
 Route::controller('patient', 'PatientController');
+Route::controller('patientActivite', 'PatientActiviteController');

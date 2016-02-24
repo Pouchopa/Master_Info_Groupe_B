@@ -38,10 +38,13 @@ class Patient extends SleepingOwlModel implements ModelWithImageFieldsInterface,
     ];
 
     public static $rules = array(
-        'pseudo'=>'required|alpha|min:2',
+        'pseudo'=>'required|alpha|min:2|unique:patients',
         'email'=>'required|email|unique:patients',
         'password'=>'required|alpha_num|between:6,12|confirmed',
-        'password_confirmation'=>'required|alpha_num|between:6,12'
+        'password_confirmation'=>'required|alpha_num|between:6,12',
+        'nom'=>'required|alpha|min:2',
+        'prenom'=>'required|alpha|min:2',
+        'sexe'=>'required|alpha'
     );
 
     //get image field

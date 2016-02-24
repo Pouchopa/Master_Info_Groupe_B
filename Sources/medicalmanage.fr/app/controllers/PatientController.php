@@ -82,9 +82,14 @@ class PatientController extends BaseController {
     public function getShow()
     {
     	$id = Auth::user()->id;
-        $utilisateurPatient = $this->model->findOrFail($id);
+        $patient = $this->model->findOrFail($id);
 
-        return View::make('patient/patient_show',  compact('utilisateurPatient'));
+        $activitePatient = null;
+        $evenementPatient = null;
+        $operationPatient = null;
+        $maladiePatient = null;
+
+        return View::make('patient/patient_show',  compact('patient', 'activitePatient', 'evenementPatient', 'evenement', 'operationPatient', 'operation', 'maladie', 'maladiePatient'));
     }
 
     /**
@@ -122,7 +127,7 @@ class PatientController extends BaseController {
 
             if ( $patient->update(Input::all()))
             {
-                return Redirect::to('patient/edit')->with('success', 'Profil modifié');
+                return Redirect::to('patient/show')->with('success', 'Profil modifié');
             } 
             else 
             {
@@ -180,6 +185,10 @@ class PatientController extends BaseController {
 		    $user->pseudo = Input::get('pseudo');
 		    $user->email = Input::get('email');
 		    $user->password = Hash::make(Input::get('password'));
+            $user->nom = Input::get('nom');
+            $user->prenom = Input::get('prenom');
+            $user->sexe = Input::get('sexe');
+            $user->date_naissance = Input::get('date_naissance');
 		    $user->save();
 
 		    return Redirect::to('auth/login')->with('message', 'Votre inscription a été validée !');

@@ -43,14 +43,14 @@
 
                     <div class="form-group">
 
-                        <div class="checkbox">
+                        <div class="radio">
 
                             <label>
-                                {{ Form::checkbox('sexe', 'H') }}Homme
+                                {{ Form::radio('sexe', 'Homme') }}Homme
                             </label>
 
                             <label>
-                                {{ Form::checkbox('sexe', 'F') }}Femme
+                                {{ Form::radio('sexe', 'Femme') }}Femme
                             </label>
 
                         </div>
@@ -133,35 +133,35 @@
                     </div>
 
                     <h4> Activités sportives </h4>
-                     <a href="{{url('activite.create')}}">
+                     <a href="{{url('patientActivite/create')}}">
 
                         Ajouter une activité sportive
 
                     </a>
 
                     <h4> Evènements </h4>
-                     <a href="{{url('evenement.create')}}" >
+                     <a href="{{url('evenement/create')}}" >
 
                         Ajouter un évènement
 
                     </a>
 
                     <h4> Alimentation </h4>
-                     <a href="{{url('alimentation.create')}}">
+                     <a href="{{url('alimentation/create')}}">
 
                         Ajouter une alimentation
 
                     </a>
 
                     <h4> Maladie </h4>
-                     <a href="{{url('maladiechronique.create')}}" >
+                     <a href="{{url('maladiechronique/create')}}" >
 
                         Ajouter une maladie
 
                     </a>
 
                     <h4> Opération </h4>
-                     <a href="{{url('operation.create')}}">
+                     <a href="{{url('operation/create')}}">
 
                         Ajouter une opération
 

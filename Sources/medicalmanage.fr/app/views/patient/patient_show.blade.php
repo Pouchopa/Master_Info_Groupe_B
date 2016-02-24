@@ -13,42 +13,80 @@
 
             <div class="panel-body"> 
 
-                <p>Pseudo : {{ $utilisateurPatient->pseudo }}</p>
+                <p>Pseudo : {{ $patient->pseudo }}</p>
 
-                <p>Nom : {{ $utilisateurPatient->nom }}</p>
+                <p>Nom : {{ $patient->nom }}</p>
 
-                <p>Prénom : {{ $utilisateurPatient->prenom }}</p>
+                <p>Prénom : {{ $patient->prenom }}</p>
 
-                @if($utilisateurPatient->sexe == 'H')
+                @if($patient->sexe == 'H')
                     <p>Sexe : Homme</p>
                 @else
                     <p>Sexe : Femme</p>
                 @endif
 
-                <p>Date de naissance : {{ $utilisateurPatient->date_naissance }}</p>
+                <p>Date de naissance : {{ $patient->date_naissance }}</p>
 
-                <p>Email : {{ $utilisateurPatient->email }}</p>
+                <p>Email : {{ $patient->email }}</p>
 
-                @if($utilisateurPatient->taux_de_graisse != 0)
-                    <p>Taux de graisse : {{ $utilisateurPatient->taux_de_graisse }}</p>
+                @if($patient->taux_de_graisse != 0)
+                    <p>Taux de graisse : {{ $patient->taux_de_graisse }}</p>
                 @endif
 
-                @if($utilisateurPatient->taux_de_muscle != 0)
-                    <p>Taux de muscle : {{ $utilisateurPatient->taux_de_muscle }}</p>
+                @if($patient->taux_de_muscle != 0)
+                    <p>Taux de muscle : {{ $patient->taux_de_muscle }}</p>
                 @endif
 
-                @if($utilisateurPatient->masse_osseuse != 0)
-                    <p>Masse osseuse : {{ $utilisateurPatient->masse_osseuse }}</p>
+                @if($patient->masse_osseuse != 0)
+                    <p>Masse osseuse : {{ $patient->masse_osseuse }}</p>
                 @endif
 
-                @if($utilisateurPatient->heures_travaillées != 0)
-                    <p>Nombres d'heures travaillées : {{ $utilisateurPatient->heures_travaillées }}</p>
+                @if($patient->heures_travaillées != 0)
+                    <p>Nombres d'heures travaillées : {{ $patient->heures_travaillées }}</p>
                 @endif
 
-                <p>Nombre d'enfants : {{ $utilisateurPatient->nbr_enfants }}</p>
+                <p>Nombre d'enfants : {{ $patient->nbr_enfants }}</p>
 
-                @if($utilisateurPatient->situation_familiale != 0)
-                    <p>Situation familiale : {{ $utilisateurPatient->situation_familiale }}</p>
+                @if($patient->situation_familiale != 0)
+                    <p>Situation familiale : {{ $patient->situation_familiale }}</p>
+                @endif
+
+                <h4> Activités sportives </h4>
+                @if($activitePatient != null)
+                    <ul>
+                            <li>{{ $activitePatient->date_debut }} : {{ $activite->libelle_activite }}</li>
+                    </ul>
+                @else
+                    Aucune activité enregistrée.
+                @endif
+
+                <h4> Evènements </h4>
+                @if($evenementPatient != null)
+                    <ul>
+                            <li>{{ $evenementPatient->date_evenement }} : {{ $evenement->libelle_evenement }}</li>
+                    </ul>
+                @else
+                    Aucun évènement enregistré.
+                @endif
+
+                <h4> Alimentation </h4>
+
+                <h4> Maladie </h4>
+                @if($maladiePatient != null)
+                    <ul>
+                        <li>{{ $maladiePatient->date_maladie }} : {{ $maladie->libelle_maladie }}</li>
+                    </ul>
+                @else
+                    Aucune maladie enregistrée.
+                @endif    
+
+                <h4> Opération </h4>
+                @if($operationPatient != null)
+                    <ul>
+                        <li>{{ $operationPatient->date_operation }} : {{ $operation->libelle_operation }}</li>
+                    </ul>
+                @else
+                    Aucune opération enregistrée.
                 @endif
 
             </div>

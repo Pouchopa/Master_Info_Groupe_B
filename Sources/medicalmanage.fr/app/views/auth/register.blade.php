@@ -48,6 +48,40 @@
 							</div>
 						</div>
 
+						<div class="form-group">
+							<label class="col-md-4 control-label">Nom</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="nom" value="{{ Input::old('nom') }}">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-4 control-label">Prénom</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="prenom" value="{{ Input::old('prenom') }}">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-4 control-label">Sexe</label>
+	                        <div class="radio col-md-6">
+	                            <label>
+	                                {{ Form::radio('sexe', 'Homme') }}Homme
+	                            </label>
+
+	                            <label>
+	                                {{ Form::radio('sexe', 'Femme') }}Femme
+	                            </label>
+	                        </div>
+                    	</div>
+
+                    	<div class="form-group">
+                            <label class="col-md-4 control-label">Date de naissance</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" id="datepicker" name="date_naissance" value="{{ Input::old('date_naissance') }}">
+							</div>
+                        </div>
+
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 						<div class="form-group">
