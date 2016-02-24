@@ -39,15 +39,15 @@ Admin::model(\App\models\Patient::class)
     ->form(function ()
     {
         FormItem::text('pseudo', 'Pseudo')->required()->unique();
-        FormItem::text('mot_de_passe', 'Mot de passe')->required();
+        FormItem::text('password', 'Mot de passe')->required();
         FormItem::text('nom', 'Nom')->required();
-        FormItem::text('prenom', 'Prenom')->required();
+        FormItem::text('prenom', 'Prénom')->required();
         FormItem::image('photo', 'Photo')->required();
         FormItem::text('email', 'E-mail')->required()->unique();
-        FormItem::text('numero_tel', 'Telephone')->required();
+        FormItem::text('numero_tel', 'Téléphone')->required();
         FormItem::select('sexe', 'Sexe')->list(['Homme'=>'Homme','Femme'=>'Femme','Autre'=>'Autre'])->required();
         FormItem::date('date_naissance', 'Date de naissance')->required();
         FormItem::select('situation_familiale', 'Situation familiale')->list(['Marié(e)'=>'Marié(e)','Divorcé(e)'=>'Divorcé(e)','Pacsé(e)'=>'Pacsé(e)', 'En couple'=>'En couple', 'Célibataire'=>'Célibataire', 'Autre'=>'Autre'])->required();
-        FormItem::text('nbr_enfants', 'Nombre denfants');
+        FormItem::text('nbr_enfants', 'Nombre d\'enfants');
     });
 

@@ -19,15 +19,17 @@ class Patient extends SleepingOwlModel implements ModelWithImageFieldsInterface,
 
     protected $fillable = [
         'pseudo',
-        'mot_de_passe',
+        'password',
         'nom',
         'prenom',
         'photo',
         'email',
         'sexe',
+        'numero_tel',
         'date_naissance',
         'situation_familiale',
-        'nbr_enfants'
+        'nbr_enfants',
+        'remember_token'
     ];
 
     protected $hidden = [
