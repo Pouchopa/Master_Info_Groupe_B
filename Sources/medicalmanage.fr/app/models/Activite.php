@@ -7,7 +7,7 @@ class Activite extends Model {
 	//
     public function patient()
     {
-        return $this->belongsToMany('App\Patient');
+        return $this->belongsToMany('App\models\Patient');
     }
 
 }

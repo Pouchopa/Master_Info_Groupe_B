@@ -20,14 +20,14 @@ class CreatePatientActivitesTable extends Migration {
 			$table->date('dateFin');
 			$table->text('description');
 
-			$table->integer('patient_id')->unsigned();
+			$table->integer('patient_id')->unsigned()->index();
 			$table->foreign('patient_id')
 					->references('id')
 					->on('patients')
 					->onDelete('restrict')
 					->onUpdate('restrict');
 
-			$table->integer('activite_id')->unsigned();
+			$table->integer('activite_id')->unsigned()->index();
 			$table->foreign('activite_id')
 					->references('id')
 					->on('activites')
