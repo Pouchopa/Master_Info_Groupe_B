@@ -35,7 +35,7 @@
 
 			<div class="collapse navbar-collapse" id="navbar">
 				<ul class="nav navbar-nav">
-					<li><a href="{{ url('/patients/dashboard') }}">Accueil</a></li>
+					<li><a href="{{ url('/patient/dashboard') }}">Accueil</a></li>
 					@if(!Auth::guest())
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Consultations<span class="caret"></span></a>

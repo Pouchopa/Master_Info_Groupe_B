@@ -41,13 +41,13 @@
 
                             {{ Form::label('description', 'Description* :') }}
 
-                            {{ Form::text('description', null, array('class' => 'form-control', 'placeholder' => 'Entrez la description de l'activité)) }}
+                            {{ Form::text('description', null, array('class' => 'form-control', 'placeholder' => 'Entrez la description de l\'activité')) }}
 
                             {{ $errors->first('description', '<small class="help-block">:message</small>') }}
 
                         </div>
 
-                        {{ Form::hidden('patient_id', Auth::user()->id }}
+                        {{ Form::hidden('patient_id', Auth::user()->id) }}
 
                         <div class="form-group {{ $errors->has('activite_id') ? 'has-error' : '' }}">
 
@@ -58,6 +58,8 @@
                             {{ $errors->first('activite_id', '<small class="help-block">:message</small>') }}
 
                         </div>
+
+                        {{ Form::hidden('_token', csrf_token()) }}
 
                         
                     {{ Form::submit('Envoyer !', array('class' => 'btn btn-primary pull-right')) }}

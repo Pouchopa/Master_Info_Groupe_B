@@ -194,7 +194,7 @@ class PatientController extends BaseController {
                 $destinationPath = public_path() . '/images/patients/';
                 $filename = Input::file('avatar')->getClientOriginalName();
                 Input::file('avatar')->move($destinationPath, $filename);
-                $image = Image::make(sprintf($destinationPath.'%s', $filename))->resize(120, 120)->save();
+                //$image = Image::make(sprintf($destinationPath.'%s', $filename))->resize(120, 120)->save();
                 $user->photo = $filename;
             }
 		    $user->save();

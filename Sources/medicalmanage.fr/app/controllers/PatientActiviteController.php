@@ -1,12 +1,10 @@
 <?php
 
-use App\Models\PatientActivite;
+use App\models\PatientActivite;
 
 class PatientActiviteController extends BaseController {
 
 	protected $model;
-
-    protected $nbrPerPage = 4;
 
 	public function __construct(PatientActivite $activite) {
     	$this->beforeFilter('csrf', array('on'=>'post'));
@@ -20,7 +18,7 @@ class PatientActiviteController extends BaseController {
      */
     public function getCreate()
     {
-        return View::make('activitePatient/activite_create');
+        return View::make('activitePatient/activitePatient_create');
     }
 
 	public function postCreate() {

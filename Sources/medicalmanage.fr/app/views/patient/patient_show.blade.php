@@ -9,18 +9,19 @@
 
         <div class="panel panel-primary">   
 
-            <div class="panel-heading">Fiche d'utilisateur</div>
+            <div class="panel-heading">Fiche utilisateur</div>
 
             <div class="panel-body"> 
 
+                <span class="pull-right"><img src="{{ URL::to('/') }}/images/patients/{{$patient->photo }}" height="120px" width="160px" /></span>
+
                 <p>Pseudo : {{ $patient->pseudo }}</p>
-                <img src="{{ URL::to('/') }}/images/patients/{{$patient->photo }}" />
 
                 <p>Nom : {{ $patient->nom }}</p>
 
                 <p>Prénom : {{ $patient->prenom }}</p>
 
-                @if($patient->sexe == 'H')
+                @if($patient->sexe == 'Homme')
                     <p>Sexe : Homme</p>
                 @else
                     <p>Sexe : Femme</p>
@@ -106,14 +107,11 @@
         
         </a>
 
-        <a href="{{ url('/patient/delete/' . Auth::user()->id) }}" class="btn btn-danger" onclick="return confirm('Vraiment supprimer ?');">
+        <a href="{{ url('/patient/delete/' . Auth::user()->id) }}" class="btn btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer votre compte ?');">
         
             <span class="glyphicon glyphicon-remove"></<span> Supprimer
         
         </a>
-
-
-
 
     </div>
 

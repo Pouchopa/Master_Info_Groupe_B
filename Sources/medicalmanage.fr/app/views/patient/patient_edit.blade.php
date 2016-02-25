@@ -15,7 +15,15 @@
 
                 <div class="col-sm-12">
 
-                    {{ Form::model($patient, array('url' => array('patient/update', $patient->id), 'method' => 'put', 'class' => 'form-horizontal panel')) }}
+                    {{ Form::model($patient, array('url' => array('patient/update', $patient->id), 'method' => 'put', 'files' => 'true', 'class' => 'form-horizontal panel')) }}
+
+		    <!-- <div class="form-group {{ $errors->has('photo') ? 'has-error' : '' }}">
+
+                        {{ Form::file('photo', null, ['class' => 'form-control']) }}
+
+                        {{ $errors->first('photo', '<small class="help-block">:message</small>') }}
+
+                    </div> !-->
 
                     <div class="form-group {{ $errors->has('nom') ? 'has-error' : '' }}">
 
