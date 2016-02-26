@@ -24,11 +24,6 @@ Admin::model(\App\models\Patient::class)
     ->title('Patient')
     ->as('Patients')
     ->async()
-    ->with('activites')
-    ->filters(function ()
-    {
-        ModelItem::filter('withoutActivites')->scope('withoutActivites')->title('without activites');
-    })
     ->columns(function ()
     {
         Column::image('photo');
@@ -40,7 +35,6 @@ Admin::model(\App\models\Patient::class)
         Column::date('date_naissance', 'Date de naissance')->format('medium', 'none');
         Column::string('situation_familiale', 'Situation familiale');
         Column::string('numero_tel', 'Telephone');
-        Column::lists('activites.libelle', 'Activites');
     })
     ->form(function ()
     {
@@ -55,7 +49,32 @@ Admin::model(\App\models\Patient::class)
         FormItem::date('date_naissance', 'Date de naissance')->required();
         FormItem::select('situation_familiale', 'Situation familiale')->list(['Marié(e)'=>'Marié(e)','Divorcé(e)'=>'Divorcé(e)','Pacsé(e)'=>'Pacsé(e)', 'En couple'=>'En couple', 'Célibataire'=>'Célibataire', 'Autre'=>'Autre'])->required();
         FormItem::text('nbr_enfants', 'Nombre d\'enfants');
-        FormItem::multiSelect('activites', 'Activites')->list('\Activite')->value('activites.id');
+    });
+
+Admin::model(\App\models\Consultation::class)
+    ->title('Consultation')
+    ->as('Consultations')
+    ->async()
+    ->with('patient')
+    ->filters(function ()
+    {
+        ModelItem::filter('patient_id')->title()->from('\App\models\Patient');
+    })
+    ->columns(function ()
+    {
+        Column::string('patient.id', 'Patient')->append(Column::filter('patient_id')->value('patient.id'));
+        Column::date('date', 'Date consultation')->format('medium', 'none');
+        Column::string('description', 'Description');
+        Column::string('commentaireKine', 'Commentaire kine');
+        Column::string('commentairePatient', 'Commentaire patient');
+    })
+    ->form(function ()
+    {
+        FormItem::select('patient_id', 'Patient')->list('\App\models\Patient')->required();
+        FormItem::date('date', 'Date consultation')->required();
+        FormItem::textarea('description', 'Description')->required();
+        FormItem::textarea('commentaireKine', 'Commentaire kine')->required();
+        FormItem::textarea('commentairePatient', 'Commentaire patient')->required();
     });
 
 Admin::model(\App\models\Activite::class)
@@ -72,17 +91,22 @@ Admin::model(\App\models\Activite::class)
     });
 
 Admin::model(\App\models\PatientActivite::class)
-    ->title('Patient Activite')
+    ->title('PatientActivite')
+    ->as('PatientActivites')
     ->async()
     ->columns(function ()
     {
+        Column::string('patient_id', 'Patient');
+        Column::string('activite_id', 'Activite');
         Column::date('dateDebut', 'date de debut')->format('medium', 'none');
         Column::date('dateFin', 'date de fin')->format('medium', 'none');
     })
     ->form(function ()
     {
+        FormItem::text('patient_id', 'Patient')->required();
+        FormItem::text('activite_id', 'Activite')->required();
         FormItem::date('dateDebut', 'date de debut')->required();
         FormItem::date('dateFin', 'date de fin')->required();
-        FormItem::view('description', 'description')->required();
+        FormItem::ckeditor('description', 'description')->required();
     });
 

@@ -1,6 +1,5 @@
 <?php namespace App\models;
 
-use Illuminate\Database\Eloquent\Model;
 use SleepingOwl\Models\SleepingOwlModel;
 
 class Activite extends SleepingOwlModel {
@@ -16,9 +15,20 @@ class Activite extends SleepingOwlModel {
         'updated_at'
     ];
 	//
-    public function patient()
+    public function scopeDefaultSort($query)
+    {
+        return $query->orderBy('libelle', 'asc');
+    }
+    public function patients()
     {
         return $this->belongsToMany('App\models\Patient');
     }
+
+    public static function getList()
+    {
+        return static::lists('libelle', 'id');
+    }
+
+
 
 }

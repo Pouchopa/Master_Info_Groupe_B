@@ -131,6 +131,26 @@ class Patient extends SleepingOwlModel implements ModelWithImageFieldsInterface,
         return 'remember_token';
     }
 
+    public function setActivitesAttribute($activites)
+    {
+        $this->activites()->detach();
+        if ( ! $activites) return;
+
+        if ( ! $this->exists) $this->save();
+
+        $this->activites()->attach($activites);
+    }
+
+    public function scopeWithoutActivites($query)
+    {
+        return $query->whereRaw('(select count(*) from patient_activites where patient_id=patients.id)=0');
+    }
+
+    public static function getList()
+    {
+        return static::lists('pseudo', 'id');
+    }
+
 
 
 }

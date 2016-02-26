@@ -17,4 +17,6 @@
 
 Admin::menu()->url('/')->label('Start page')->icon('fa-dashboard')->uses('\SleepingOwl\Admin\Controllers\DummyController@getIndex');
 Admin::menu(\App\models\Patient::class)->icon('fa-users');
+Admin::menu(\App\models\Consultation::class)->icon('fa fa-medkit');
 Admin::menu(\App\models\Activite::class)->icon('fa fa-calendar');
+Admin::menu(\App\models\PatientActivite::class)->icon('fa fa-calendar');

@@ -1,8 +1,9 @@
-<?php namespace app\models;
+<?php namespace App\models;
 
 use Illuminate\Database\Eloquent\Model;
+use SleepingOwl\Models\SleepingOwlModel;
 
-class PatientActivite extends Model {
+class PatientActivite extends SleepingOwlModel {
 
 	protected $table = 'patient_activites';
 
@@ -26,5 +27,6 @@ class PatientActivite extends Model {
         'patient_id'=>'required',
         'activite_id'=>'required'
     );
+
 
 }

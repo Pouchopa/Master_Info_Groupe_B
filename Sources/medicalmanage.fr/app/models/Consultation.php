@@ -1,17 +1,30 @@
-<?php
+<?php namespace App\models;
 
-use Illuminate\Database\Eloquent\Model;
+use SleepingOwl\Models\SleepingOwlModel;
 
-class Consultation extends Model {
+class Consultation extends SleepingOwlModel {
 
 	//
     protected $table = 'consultations';
+
+    protected $fillable = [
+        'patient_id',
+        'date',
+        'description',
+        'commentaireKine',
+        'commentairePatient'
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 
     public $timestamps = false;
 
     public function patient()
     {
-        return $this->belongsTo('App\Patient');
+        return $this->belongsTo('App\models\Patient');
     }
 
 }
