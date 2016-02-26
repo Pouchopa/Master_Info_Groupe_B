@@ -18,7 +18,7 @@ class CreateDouleursTable extends Migration {
 			$table->timestamps();
 			$table->string('position', 50);
 			$table->string('intensite', 20);
-			$table->date('date');
+			$table->string('date');
 			$table->string('evolution', 100);
 			$table->text('description');
 			$table->integer('patient_id')->unsigned();

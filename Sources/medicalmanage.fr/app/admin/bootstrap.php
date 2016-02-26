@@ -24,6 +24,11 @@ Admin::model(\App\models\Patient::class)
     ->title('Patient')
     ->as('Patients')
     ->async()
+    ->with('activites')
+    ->filters(function ()
+    {
+        ModelItem::filter('withoutActivites')->scope('withoutActivites')->title('without activites');
+    })
     ->columns(function ()
     {
         Column::image('photo');
@@ -35,6 +40,7 @@ Admin::model(\App\models\Patient::class)
         Column::date('date_naissance', 'Date de naissance')->format('medium', 'none');
         Column::string('situation_familiale', 'Situation familiale');
         Column::string('numero_tel', 'Telephone');
+        Column::lists('activites.libelle', 'Activites');
     })
     ->form(function ()
     {
@@ -49,5 +55,34 @@ Admin::model(\App\models\Patient::class)
         FormItem::date('date_naissance', 'Date de naissance')->required();
         FormItem::select('situation_familiale', 'Situation familiale')->list(['Marié(e)'=>'Marié(e)','Divorcé(e)'=>'Divorcé(e)','Pacsé(e)'=>'Pacsé(e)', 'En couple'=>'En couple', 'Célibataire'=>'Célibataire', 'Autre'=>'Autre'])->required();
         FormItem::text('nbr_enfants', 'Nombre d\'enfants');
+        FormItem::multiSelect('activites', 'Activites')->list('\Activite')->value('activites.id');
+    });
+
+Admin::model(\App\models\Activite::class)
+    ->title('Activite')
+    ->as('Activites')
+    ->async()
+    ->columns(function ()
+    {
+        Column::string('libelle', 'Activité');
+    })
+    ->form(function ()
+    {
+        FormItem::text('libelle', 'Activité')->required();
+    });
+
+Admin::model(\App\models\PatientActivite::class)
+    ->title('Patient Activite')
+    ->async()
+    ->columns(function ()
+    {
+        Column::date('dateDebut', 'date de debut')->format('medium', 'none');
+        Column::date('dateFin', 'date de fin')->format('medium', 'none');
+    })
+    ->form(function ()
+    {
+        FormItem::date('dateDebut', 'date de debut')->required();
+        FormItem::date('dateFin', 'date de fin')->required();
+        FormItem::view('description', 'description')->required();
     });
 

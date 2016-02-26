@@ -2,7 +2,7 @@
 
 use App\models\PatientActivite;
 
-class PatientActiviteController extends BaseController {
+class PatientActiviteController extends \BaseController {
 
 	protected $model;
 

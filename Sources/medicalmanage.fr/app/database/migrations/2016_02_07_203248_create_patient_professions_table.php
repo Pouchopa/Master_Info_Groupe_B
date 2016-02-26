@@ -16,8 +16,8 @@ class CreatePatientProfessionsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->timestamps();
-			$table->date('dateDebut');
-			$table->date('dateFin');
+			$table->string('dateDebut');
+			$table->string('dateFin');
 			$table->integer('nbrHeurParSemaine');
 			$table->text('description');
 

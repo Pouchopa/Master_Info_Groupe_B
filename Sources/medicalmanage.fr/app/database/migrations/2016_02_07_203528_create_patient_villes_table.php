@@ -16,8 +16,8 @@ class CreatePatientVillesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->timestamps();
-			$table->date('dateDebut');
-			$table->date('dateFin');
+			$table->string('dateDebut');
+			$table->string('dateFin');
 			$table->text('description');
 
 			$table->integer('patient_id')->unsigned();

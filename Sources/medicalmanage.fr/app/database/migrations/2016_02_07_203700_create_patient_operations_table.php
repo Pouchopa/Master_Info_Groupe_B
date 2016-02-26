@@ -16,7 +16,7 @@ class CreatePatientOperationsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->timestamps();
-			$table->date('date');
+			$table->string('date');
 			$table->integer('duree');
 			$table->text('description');
 

@@ -22,7 +22,7 @@ class CreateMesuresTable extends Migration {
 			$table->integer('taux_de_graisse')->nullable();
 			$table->integer('taux_de_muscle')->nullable();
 			$table->integer('masse_osseuse')->nullable();
-			$table->date('date');
+			$table->string('date');
 			$table->text('description');
 			$table->integer('patient_id')->unsigned();
 			$table->foreign('patient_id')

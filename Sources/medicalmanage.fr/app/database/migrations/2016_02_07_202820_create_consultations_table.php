@@ -16,7 +16,7 @@ class CreateConsultationsTable extends Migration {
 		{
 			$table->increments('id')->index();
 			$table->timestamps();
-			$table->date('date');
+			$table->string('date');
 			$table->text('description');
 			$table->text('commentaireKine');
 			$table->text('commentairePatient');

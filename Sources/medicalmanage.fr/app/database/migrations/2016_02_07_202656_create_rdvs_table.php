@@ -16,7 +16,7 @@ class CreateRdvsTable extends Migration {
 		{
 			$table->increments('id')->index();
 			$table->timestamps();
-			$table->date('date');
+			$table->string('date');
 			$table->text('motif');
 			$table->integer('patient_id')->unsigned();
 			$table->foreign('patient_id')
