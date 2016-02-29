@@ -21,7 +21,7 @@
  * 		});
  */
 Admin::model(\App\models\Patient::class)
-    ->title('Patients')
+    ->title('Liste des patients')
     ->as('Patients')
     ->columns(function ()
     {
@@ -52,7 +52,7 @@ Admin::model(\App\models\Patient::class)
     });
 
 Admin::model(\App\models\Consultation::class)
-    ->title('Consultations')
+    ->title('Liste des consultations')
     ->as('Consultations')
     ->with('patient')
     ->filters(function ()
@@ -77,7 +77,7 @@ Admin::model(\App\models\Consultation::class)
     });
 
 Admin::model(\App\models\Activite::class)
-    ->title('Activite')
+    ->title('Liste des activités')
     ->as('Activites')
     ->async()
     ->columns(function ()
@@ -90,22 +90,27 @@ Admin::model(\App\models\Activite::class)
     });
 
 Admin::model(\App\models\PatientActivite::class)
-    ->title('PatientActivite')
+    ->title('Patients et leurs activités')
     ->as('PatientActivites')
-    ->async()
+    ->filters(function ()
+    {
+        ModelItem::filter('patient_id')->title()->from('\App\models\Patient', 'email');
+        ModelItem::filter('activite_id')->title()->from('\App\models\Activite', 'libelle');
+    })
     ->columns(function ()
     {
-        Column::string('patient_id', 'Patient');
-        Column::string('activite_id', 'Activite');
+        Column::string('patient.email', 'Patient')->append(Column::filter('patient_id')->value('patient.id'));
+        Column::string('activite.libelle', 'Activite')->append(Column::filter('activite_id')->value('activite.id'));
         Column::date('dateDebut', 'date de debut')->format('medium', 'none');
         Column::date('dateFin', 'date de fin')->format('medium', 'none');
+        Column::string('description', 'description');
     })
     ->form(function ()
     {
-        FormItem::text('patient_id', 'Patient')->required();
-        FormItem::text('activite_id', 'Activite')->required();
+        FormItem::select('patient_id', 'Patient')->list('\App\models\Patient')->required();
+        FormItem::select('activite_id', 'Activite')->list('\App\models\Activite')->required();
         FormItem::date('dateDebut', 'date de debut')->required();
         FormItem::date('dateFin', 'date de fin')->required();
-        FormItem::ckeditor('description', 'description')->required();
+        FormItem::textarea('description', 'description')->required();
     });
 
