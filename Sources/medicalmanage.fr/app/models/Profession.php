@@ -5,9 +5,8 @@ use Illuminate\Database\Eloquent\Model;
 class Profession extends Model {
 
 	//
-    public function patient()
+    public function patientProfessions()
     {
-        return $this->belongsToMany('App\Patient');
+        return $this->hasMany('App\models\PatientProfession');
     }
-
 }

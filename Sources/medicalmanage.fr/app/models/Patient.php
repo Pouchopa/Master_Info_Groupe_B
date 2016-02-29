@@ -86,34 +86,34 @@ class Patient extends SleepingOwlModel implements ModelWithImageFieldsInterface,
         return $this->hasMany('App\models\Rdv');
     }
 
-    public function professions()
+    public function patientProfessions()
     {
-        return $this->belongsToMany('App\models\Profession');
+        return $this->hasMany('App\models\PatientProfession');
     }
 
-    public function villes()
+    public function patientVilles()
     {
-        return $this->belongsToMany('App\models\Ville');
+        return $this->hasMany('App\models\PatientVille');
     }
 
-    public function activites()
+    public function patientActivites()
     {
-        return $this->belongsToMany('App\models\Activite');
+        return $this->hasMany('App\models\PatientActivite');
     }
 
-    public function malasies()
+    public function patientMaladies()
     {
-        return $this->belongsToMany('App\models\Maladie');
+        return $this->hasMany('App\models\PatientMaladie');
     }
 
-    public function alimentations()
+    public function patientAlimentations()
     {
-        return $this->belongsToMany('App\models\Alimentation');
+        return $this->hasMany('App\models\PatientAlimentation');
     }
 
-    public function operations()
+    public function patientOperations()
     {
-        return $this->belongsToMany('App\models\Operation');
+        return $this->hasMany('App\models\PatientOperation');
     }
 
     public function getRememberToken()

@@ -5,9 +5,11 @@ use Illuminate\Database\Eloquent\Model;
 class Alimentation extends Model {
 
 	//
-    public function patient()
+
+
+    public function patientAlimentations()
     {
-        return $this->belongsToMany('App\Patient');
+        return $this->hasMany('App\models\PatientAlimentation');
     }
 
 }

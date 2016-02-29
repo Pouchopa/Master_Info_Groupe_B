@@ -5,8 +5,8 @@ use Illuminate\Database\Eloquent\Model;
 class Operation extends Model {
 
 	//
-    public function patient()
+    public function patientOperations()
     {
-        return $this->belongsToMany('App\Patient');
+        return $this->hasMany('App\models\PatientOperation');
     }
 }

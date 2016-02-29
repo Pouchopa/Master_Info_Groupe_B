@@ -19,9 +19,9 @@ class Activite extends SleepingOwlModel {
     {
         return $query->orderBy('libelle', 'asc');
     }
-    public function patients()
+    public function patientActivites()
     {
-        return $this->belongsToMany('App\models\Patient');
+        return $this->hasMany('App\models\PatientActivite');
     }
 
     public static function getList()

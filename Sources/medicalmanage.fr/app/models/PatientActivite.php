@@ -28,5 +28,15 @@ class PatientActivite extends SleepingOwlModel {
         'activite_id'=>'required'
     );
 
+    public function patient()
+    {
+        return $this->belongsTo('App\models\Patient');
+    }
+
+    public function activite()
+    {
+        return $this->belongsTo('App\models\Activite');
+    }
+
 
 }

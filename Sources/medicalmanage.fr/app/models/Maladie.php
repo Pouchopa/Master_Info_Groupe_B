@@ -5,9 +5,9 @@ use Illuminate\Database\Eloquent\Model;
 class Maladie extends Model {
 
 	//
-    public function patient()
+    public function patientMaladies()
     {
-        return $this->belongsToMany('App\Patient');
+        return $this->hasMany('App\models\PatientMaladie');
     }
 
 }
