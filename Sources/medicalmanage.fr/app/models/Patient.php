@@ -141,14 +141,14 @@ class Patient extends SleepingOwlModel implements ModelWithImageFieldsInterface,
         $this->activites()->attach($activites);
     }
 
-    public function scopeWithoutActivites($query)
+    public function scopeDefaultSort($query)
     {
-        return $query->whereRaw('(select count(*) from patient_activites where patient_id=patients.id)=0');
+        return $query->orderBy('email', 'asc');
     }
 
     public static function getList()
     {
-        return static::lists('pseudo', 'id');
+        return static::lists('email', 'id');
     }
 
 

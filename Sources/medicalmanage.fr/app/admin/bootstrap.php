@@ -21,9 +21,8 @@
  * 		});
  */
 Admin::model(\App\models\Patient::class)
-    ->title('Patient')
+    ->title('Patients')
     ->as('Patients')
-    ->async()
     ->columns(function ()
     {
         Column::image('photo');
@@ -35,6 +34,7 @@ Admin::model(\App\models\Patient::class)
         Column::date('date_naissance', 'Date de naissance')->format('medium', 'none');
         Column::string('situation_familiale', 'Situation familiale');
         Column::string('numero_tel', 'Telephone');
+        Column::count('consultations', 'Consultations')->append(Column::filter('patient_id')->model('\App\models\Consultation'));
     })
     ->form(function ()
     {
@@ -52,17 +52,16 @@ Admin::model(\App\models\Patient::class)
     });
 
 Admin::model(\App\models\Consultation::class)
-    ->title('Consultation')
+    ->title('Consultations')
     ->as('Consultations')
-    ->async()
     ->with('patient')
     ->filters(function ()
     {
-        ModelItem::filter('patient_id')->title()->from('\App\models\Patient');
+        ModelItem::filter('patient_id')->title()->from('\App\models\Patient', 'email');
     })
     ->columns(function ()
     {
-        Column::string('patient.id', 'Patient')->append(Column::filter('patient_id')->value('patient.id'));
+        Column::string('patient.email', 'Patient')->append(Column::filter('patient_id')->value('patient.id'));
         Column::date('date', 'Date consultation')->format('medium', 'none');
         Column::string('description', 'Description');
         Column::string('commentaireKine', 'Commentaire kine');
