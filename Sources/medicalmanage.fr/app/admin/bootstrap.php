@@ -31,10 +31,10 @@ Admin::model(\App\models\Patient::class)
         Column::string('prenom', 'Prenom');
         Column::string('email', 'E-mail');
         Column::string('sexe', 'Sexe');
-        Column::date('date_naissance', 'Date de naissance')->format('medium', 'none');
-        Column::string('situation_familiale', 'Situation familiale');
         Column::string('numero_tel', 'Telephone');
-        Column::count('consultations', 'Consultations')->append(Column::filter('patient_id')->model('\App\models\Consultation'));
+        Column::count('consultations')->append(
+            Column::filter('patient_id')->model(\App\models\Consultation::class)
+        );
     })
     ->form(function ()
     {
