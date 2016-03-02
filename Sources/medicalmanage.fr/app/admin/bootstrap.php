@@ -35,6 +35,9 @@ Admin::model(\App\models\Patient::class)
         Column::count('consultations')->append(
             Column::filter('patient_id')->model(\App\models\Consultation::class)
         );
+        Column::count('patientActivites')->append(
+            Column::filter('patient_id')->model(\App\models\PatientActivite::class)
+        );
     })
     ->form(function ()
     {
@@ -62,7 +65,7 @@ Admin::model(\App\models\Consultation::class)
     ->columns(function ()
     {
         Column::string('patient.email', 'Patient')->append(Column::filter('patient_id')->value('patient.id'));
-        Column::date('date', 'Date consultation')->format('medium', 'none');
+        Column::date('date', 'Date consultation');
         Column::string('description', 'Description');
         Column::string('commentaireKine', 'Commentaire kine');
         Column::string('commentairePatient', 'Commentaire patient');
@@ -76,10 +79,23 @@ Admin::model(\App\models\Consultation::class)
         FormItem::textarea('commentairePatient', 'Commentaire patient')->required();
     });
 
+Admin::model(\App\models\Maladie::class)
+    ->title('Liste des maladies')
+    ->as('Maladies')
+    ->columns(function ()
+    {
+        Column::string('libelle', 'Maladie');
+        Column::string('description', 'Description');
+    })
+    ->form(function ()
+    {
+        FormItem::text('libelle', 'Maladie')->required();
+        FormItem::textarea('description', 'Description')->required();
+    });
+
 Admin::model(\App\models\Activite::class)
     ->title('Liste des activités')
     ->as('Activites')
-    ->async()
     ->columns(function ()
     {
         Column::string('libelle', 'Activité');
@@ -101,8 +117,8 @@ Admin::model(\App\models\PatientActivite::class)
     {
         Column::string('patient.email', 'Patient')->append(Column::filter('patient_id')->value('patient.id'));
         Column::string('activite.libelle', 'Activite')->append(Column::filter('activite_id')->value('activite.id'));
-        Column::date('dateDebut', 'date de debut')->format('medium', 'none');
-        Column::date('dateFin', 'date de fin')->format('medium', 'none');
+        Column::date('dateDebut', 'date debut');
+        Column::date('dateFin', 'date fin');
         Column::string('description', 'description');
     })
     ->form(function ()

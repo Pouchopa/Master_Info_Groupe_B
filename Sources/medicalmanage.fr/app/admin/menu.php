@@ -19,4 +19,5 @@ Admin::menu()->url('/')->label('Page d\'accueil')->icon('fa-dashboard')->uses('\
 Admin::menu(\App\models\Patient::class)->icon('fa-users');
 Admin::menu(\App\models\Consultation::class)->icon('fa fa-medkit');
 Admin::menu(\App\models\Activite::class)->icon('fa fa-calendar');
+Admin::menu(\App\models\Maladie::class)->icon('fa fa-calendar');
 Admin::menu(\App\models\PatientActivite::class)->icon('fa fa-calendar');

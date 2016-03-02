@@ -15,7 +15,7 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
-
+//Route::controller('admin', 'AdminController');
 Route::controller('auth', 'PatientController');
 Route::controller('patient', 'PatientController');
 Route::controller('patientActivite', 'PatientActiviteController');

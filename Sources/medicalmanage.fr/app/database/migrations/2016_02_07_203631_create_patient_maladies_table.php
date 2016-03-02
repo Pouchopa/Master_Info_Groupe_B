@@ -16,7 +16,6 @@ class CreatePatientMaladiesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->timestamps();
-			$table->text('description');
 
 			$table->integer('patient_id')->unsigned();
 			$table->foreign('patient_id')
