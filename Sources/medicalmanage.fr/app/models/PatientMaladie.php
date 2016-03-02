@@ -10,7 +10,8 @@ class PatientMaladie extends SleepingOwlModel {
 
     protected $fillable = [
         'patient_id',
-        'maladie_id'
+        'maladie_id',
+        'date'
     ];
 
     protected $hidden = [
