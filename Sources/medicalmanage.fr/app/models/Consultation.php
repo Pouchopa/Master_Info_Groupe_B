@@ -9,6 +9,7 @@ class Consultation extends SleepingOwlModel {
 
     protected $fillable = [
         'patient_id',
+        'maladie_id',
         'date',
         'description',
         'commentaireKine',
@@ -25,6 +26,10 @@ class Consultation extends SleepingOwlModel {
     public function patient()
     {
         return $this->belongsTo('App\models\Patient');
+    }
+    public function maladie()
+    {
+        return $this->belongsTo('App\models\Maladie');
     }
 
 }

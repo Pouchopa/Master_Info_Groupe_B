@@ -26,6 +26,13 @@ class CreateConsultationsTable extends Migration {
 					->on('patients')
 					->onDelete('restrict')
 					->onUpdate('restrict');
+
+			$table->integer('maladie_id')->unsigned();
+			$table->foreign('maladie_id')
+					->references('id')
+					->on('maladies')
+					->onDelete('restrict')
+					->onUpdate('restrict');
 		});
 	}
 
@@ -39,6 +46,11 @@ class CreateConsultationsTable extends Migration {
 		Schema::table('consultations', function(Blueprint $table) {
 			$table->dropForeign('consultations_patient_id_foreign');
 		});
+
+		Schema::table('consultations', function(Blueprint $table) {
+			$table->dropForeign('consultations_maladie_id_foreign');
+		});
+
 		Schema::drop('consultations');
 	}
 

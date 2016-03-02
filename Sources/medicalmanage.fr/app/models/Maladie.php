@@ -22,6 +22,11 @@ class Maladie extends SleepingOwlModel {
     }
 
 
+    public function consultations()
+    {
+        return $this->hasMany('App\models\Consultation');
+    }
+
     public function scopeDefaultSort($query)
     {
         return $query->orderBy('libelle', 'asc');
