@@ -82,6 +82,29 @@ Admin::model(\App\models\Consultation::class)
         FormItem::textarea('commentairePatient', 'Commentaire patient')->required();
     });
 
+Admin::model(\App\models\Rdv::class)
+    ->title('Liste des rendez-vous')
+    ->as('Rdvs')
+    ->with('patient')
+    ->filters(function ()
+    {
+        ModelItem::filter('patient_id')->title()->from('\App\models\Patient', 'email');
+    })
+    ->columns(function ()
+    {
+        Column::string('patient.email', 'Patient')->append(Column::filter('patient_id')->value('patient.id'));
+        Column::date('date', 'Date rendez-vous');
+        Column::string('heure', 'Heure');
+        Column::string('motif', 'Motif');
+    })
+    ->form(function ()
+    {
+        FormItem::select('patient_id', 'Patient')->list('\App\models\Patient')->required();
+        FormItem::date('date', 'Date rendez-vous')->required();
+        FormItem::time('heure', 'Heure')->required();
+        FormItem::textarea('motif', 'Motif')->required();
+    });
+
 Admin::model(\App\models\Maladie::class)
     ->title('Liste des maladies')
     ->as('Maladies')

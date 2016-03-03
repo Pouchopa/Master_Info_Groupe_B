@@ -17,7 +17,8 @@
 
 Admin::menu()->url('/')->label('Page d\'accueil')->icon('fa-dashboard')->uses('\SleepingOwl\Admin\Controllers\DummyController@getIndex');
 Admin::menu(\App\models\Patient::class)->icon('fa-users');
-Admin::menu(\App\models\Consultation::class)->icon('fa fa-calendar');
+Admin::menu(\App\models\Consultation::class)->icon('fa-folder-o');
+Admin::menu(\App\models\Rdv::class)->icon('fa fa-calendar');
 Admin::menu(\App\models\Maladie::class)->icon('fa fa-medkit');
 Admin::menu(\App\models\PatientMaladie::class)->icon('fa fa-medkit');
 Admin::menu(\App\models\Activite::class)->icon('fa fa-calendar');
