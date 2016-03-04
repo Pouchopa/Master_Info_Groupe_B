@@ -145,31 +145,6 @@ Admin::model(\App\models\PatientMaladie::class)
         FormItem::select('maladie_id', 'Maladie')->list('\App\models\Maladie')->required();
     });
 
-Admin::model(\App\models\PatientActivite::class)
-    ->title('Patients et leurs activités')
-    ->as('PatientActivites')
-    ->filters(function ()
-    {
-        ModelItem::filter('patient_id')->title()->from('\App\models\Patient', 'email');
-        ModelItem::filter('activite_id')->title()->from('\App\models\Activite', 'libelle');
-    })
-    ->columns(function ()
-    {
-        Column::string('patient.email', 'Patient')->append(Column::filter('patient_id')->value('patient.id'));
-        Column::string('activite.libelle', 'Activite')->append(Column::filter('activite_id')->value('activite.id'));
-        Column::date('dateDebut', 'date debut');
-        Column::date('dateFin', 'date fin');
-        Column::string('description', 'description');
-    })
-    ->form(function ()
-    {
-        FormItem::select('patient_id', 'Patient')->list('\App\models\Patient')->required();
-        FormItem::select('activite_id', 'Activite')->list('\App\models\Activite')->required();
-        FormItem::date('dateDebut', 'date de debut')->required();
-        FormItem::date('dateFin', 'date de fin')->required();
-        FormItem::textarea('description', 'description')->required();
-    });
-
 Admin::model(\App\models\Activite::class)
     ->title('Liste des activités')
     ->as('Activites')
@@ -207,3 +182,18 @@ Admin::model(\App\models\PatientActivite::class)
         FormItem::textarea('description', 'description')->required();
     });
 
+Admin::model(\App\models\Ville::class)
+    ->title('Liste des villes')
+    ->as('Villes')
+    ->columns(function ()
+    {
+        Column::string('nom', 'Ville');
+        Column::string('code_postal', 'Code postal');
+        Column::string('description', 'Description');
+    })
+    ->form(function ()
+    {
+        FormItem::text('nom', 'Ville')->required();
+        FormItem::text('code_postal', 'Code postal')->required();
+        FormItem::textarea('description', 'Description')->required();
+    });
