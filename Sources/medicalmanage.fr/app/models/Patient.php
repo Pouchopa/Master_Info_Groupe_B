@@ -29,7 +29,8 @@ class Patient extends SleepingOwlModel implements ModelWithImageFieldsInterface,
         'date_naissance',
         'situation_familiale',
         'nbr_enfants',
-        'remember_token'
+        'remember_token',
+        'ville_id'
     ];
 
     protected $hidden = [
@@ -91,9 +92,9 @@ class Patient extends SleepingOwlModel implements ModelWithImageFieldsInterface,
         return $this->hasMany('App\models\PatientProfession');
     }
 
-    public function patientVilles()
+    public function ville()
     {
-        return $this->hasMany('App\models\PatientVille');
+        return $this->belongsTo('App\models\Ville');
     }
 
     public function patientActivites()

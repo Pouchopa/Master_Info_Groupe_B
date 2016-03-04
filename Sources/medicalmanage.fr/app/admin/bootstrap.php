@@ -23,6 +23,11 @@
 Admin::model(\App\models\Patient::class)
     ->title('Liste des patients')
     ->as('Patients')
+    ->with('ville')
+    ->filters(function ()
+    {
+        ModelItem::filter('ville_id')->title()->from('\App\models\Ville', 'nom');
+    })
     ->columns(function ()
     {
         Column::image('photo');
@@ -38,11 +43,13 @@ Admin::model(\App\models\Patient::class)
         Column::count('patientActivites')->append(
             Column::filter('patient_id')->model(\App\models\PatientActivite::class)
         );
+        Column::string('ville.nom', 'Ville')->append(Column::filter('ville_id')->value('ville.id'));
     })
     ->form(function ()
     {
         FormItem::text('pseudo', 'Pseudo')->required()->unique();
         FormItem::text('password', 'Mot de passe')->required();
+        FormItem::select('ville_id', 'Ville')->list('\App\models\Ville')->required();
         FormItem::text('nom', 'Nom')->required();
         FormItem::text('prenom', 'Prénom')->required();
         FormItem::image('photo', 'Photo')->required();

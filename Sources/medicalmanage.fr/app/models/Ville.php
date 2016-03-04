@@ -1,13 +1,30 @@
-<?php
+<?php namespace App\models;
 
-use Illuminate\Database\Eloquent\Model;
+use SleepingOwl\Models\SleepingOwlModel;
 
-class Ville extends Model {
+class Ville extends SleepingOwlModel {
 
+    protected $table = 'villes';
+
+    protected $fillable = [
+        'nom',
+        'code_postal',
+        'description'
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 	//
-    public function patientVilles()
+    public function patients()
     {
-        return $this->hasMany('App\models\PatientVille');
+        return $this->hasMany('App\models\Patient');
+    }
+
+    public static function getList()
+    {
+        return static::lists('nom', 'id');
     }
 
 }

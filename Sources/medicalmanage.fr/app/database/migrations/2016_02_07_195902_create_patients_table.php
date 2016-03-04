@@ -28,6 +28,11 @@ class CreatePatientsTable extends Migration {
 			$table->string('situation_familiale');
 			$table->string('numero_tel');
 			$table->string('remember_token', 100);
+			$table->foreign('ville_id')
+					->references('id')
+					->on('villes')
+					->onDelete('restrict')
+					->onUpdate('restrict');
 		});
 	}
 
@@ -38,6 +43,10 @@ class CreatePatientsTable extends Migration {
 	 */
 	public function down()
 	{
+		Schema::table('patients', function(Blueprint $table) {
+			$table->dropForeign('patients_ville_id_foreign');
+		});
+
 		Schema::drop('patients');
 	}
 
