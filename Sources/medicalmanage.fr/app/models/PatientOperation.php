@@ -1,10 +1,23 @@
-<?php
+<?php namespace App\models;
 
-use Illuminate\Database\Eloquent\Model;
+use SleepingOwl\Models\SleepingOwlModel;
 
-class PatientOperation extends Model {
+class PatientOperation extends SleepingOwlModel {
 
 	//
+    protected $table = 'patient_operations';
+
+    protected $fillable = [
+        'date',
+        'description',
+        'patient_id',
+        'operation_id'
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 
     public function patient()
     {

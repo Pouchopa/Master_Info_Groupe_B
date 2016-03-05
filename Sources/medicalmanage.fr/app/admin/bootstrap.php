@@ -181,6 +181,44 @@ Admin::model(\App\models\PatientActivite::class)
         FormItem::textarea('description', 'description')->required();
     });
 
+
+Admin::model(\App\models\Operation::class)
+    ->title('Liste des opérations')
+    ->as('Operations')
+    ->columns(function ()
+    {
+        Column::string('libelle', 'Activité');
+        Column::string('description', 'Description');
+    })
+    ->form(function ()
+    {
+        FormItem::text('libelle', 'Activité')->required();
+        FormItem::textarea('description', 'Description')->required();
+    });
+
+Admin::model(\App\models\PatientOperation::class)
+    ->title('Opérations des patients')
+    ->as('PatientOperations')
+    ->filters(function ()
+    {
+        ModelItem::filter('patient_id')->title()->from('\App\models\Patient', 'email');
+        ModelItem::filter('operation_id')->title()->from('\App\models\Operation', 'libelle');
+    })
+    ->columns(function ()
+    {
+        Column::string('patient.email', 'Patient')->append(Column::filter('patient_id')->value('patient.id'));
+        Column::string('operation.libelle', 'Operation')->append(Column::filter('operation_id')->value('operation.id'));
+        Column::date('date', 'date');
+        Column::string('description', 'Description');
+    })
+    ->form(function ()
+    {
+        FormItem::select('patient_id', 'Patient')->list('\App\models\Patient')->required();
+        FormItem::select('operation_id', 'Operation')->list('\App\models\Operation')->required();
+        FormItem::date('date', 'Date')->required();
+        FormItem::textarea('description', 'Description')->required();
+    });
+
 Admin::model(\App\models\Ville::class)
     ->title('Liste des villes')
     ->as('Villes')
