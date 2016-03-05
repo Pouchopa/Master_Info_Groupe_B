@@ -31,7 +31,6 @@ Admin::model(\App\models\Patient::class)
     ->columns(function ()
     {
         Column::image('photo');
-        Column::string('pseudo', 'Pseudo');
         Column::string('nom', 'Nom');
         Column::string('prenom', 'Prenom');
         Column::string('email', 'E-mail');
@@ -190,6 +189,9 @@ Admin::model(\App\models\Ville::class)
         Column::string('nom', 'Ville');
         Column::string('code_postal', 'Code postal');
         Column::string('description', 'Description');
+        Column::count('patients')->append(
+            Column::filter('ville_id')->model(\App\models\Patient::class)
+        );
     })
     ->form(function ()
     {
