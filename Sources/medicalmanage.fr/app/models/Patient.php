@@ -4,7 +4,6 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\UserTrait;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
-use Illuminate\Database\Eloquent\Model;
 use SleepingOwl\Models\Interfaces\ModelWithImageFieldsInterface;
 use SleepingOwl\Models\SleepingOwlModel;
 use SleepingOwl\Models\Traits\ModelWithImageOrFileFieldsTrait;
@@ -30,7 +29,8 @@ class Patient extends SleepingOwlModel implements ModelWithImageFieldsInterface,
         'situation_familiale',
         'nbr_enfants',
         'remember_token',
-        'ville_id'
+        'ville_id',
+        'profession_id'
     ];
 
     protected $hidden = [
@@ -87,9 +87,9 @@ class Patient extends SleepingOwlModel implements ModelWithImageFieldsInterface,
         return $this->hasMany('App\models\Rdv');
     }
 
-    public function patientProfessions()
+    public function profession()
     {
-        return $this->hasMany('App\models\PatientProfession');
+        return $this->belongsTo('App\models\Profession');
     }
 
     public function ville()

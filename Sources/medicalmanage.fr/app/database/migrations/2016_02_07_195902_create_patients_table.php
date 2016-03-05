@@ -33,6 +33,12 @@ class CreatePatientsTable extends Migration {
 					->on('villes')
 					->onDelete('restrict')
 					->onUpdate('restrict');
+
+			$table->foreign('profession_id')
+					->references('id')
+					->on('professions')
+					->onDelete('restrict')
+					->onUpdate('restrict');
 		});
 	}
 
@@ -45,6 +51,9 @@ class CreatePatientsTable extends Migration {
 	{
 		Schema::table('patients', function(Blueprint $table) {
 			$table->dropForeign('patients_ville_id_foreign');
+		});
+		Schema::table('patients', function(Blueprint $table) {
+			$table->dropForeign('patients_profession_id_foreign');
 		});
 
 		Schema::drop('patients');

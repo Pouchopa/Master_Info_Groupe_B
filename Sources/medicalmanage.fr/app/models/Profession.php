@@ -1,12 +1,33 @@
-<?php
+<?php namespace App\models;
 
-use Illuminate\Database\Eloquent\Model;
+use SleepingOwl\Models\SleepingOwlModel;
 
-class Profession extends Model {
+class Profession extends SleepingOwlModel {
 
 	//
-    public function patientProfessions()
+    protected $table = 'professions';
+
+    protected $fillable = [
+        'libelle'
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+
+    public function patients()
     {
-        return $this->hasMany('App\models\PatientProfession');
+        return $this->hasMany('App\models\Patient');
+    }
+
+    public function scopeDefaultSort($query)
+    {
+        return $query->orderBy('libelle', 'asc');
+    }
+
+    public static function getList()
+    {
+        return static::lists('libelle', 'id');
     }
 }

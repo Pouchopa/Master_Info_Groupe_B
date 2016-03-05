@@ -24,9 +24,11 @@ Admin::model(\App\models\Patient::class)
     ->title('Liste des patients')
     ->as('Patients')
     ->with('ville')
+    ->with('profession')
     ->filters(function ()
     {
         ModelItem::filter('ville_id')->title()->from('\App\models\Ville', 'nom');
+        ModelItem::filter('profession_id')->title()->from('\App\models\Profession', 'libelle');
     })
     ->columns(function ()
     {
@@ -43,12 +45,14 @@ Admin::model(\App\models\Patient::class)
             Column::filter('patient_id')->model(\App\models\PatientActivite::class)
         );
         Column::string('ville.nom', 'Ville')->append(Column::filter('ville_id')->value('ville.id'));
+        Column::string('profession.libelle', 'Profession')->append(Column::filter('profession_id')->value('profession.id'));
     })
     ->form(function ()
     {
         FormItem::text('pseudo', 'Pseudo')->required()->unique();
         FormItem::text('password', 'Mot de passe')->required();
         FormItem::select('ville_id', 'Ville')->list('\App\models\Ville')->required();
+        FormItem::select('profession_id', 'Profession')->list('\App\models\Profession')->required();
         FormItem::text('nom', 'Nom')->required();
         FormItem::text('prenom', 'Prénom')->required();
         FormItem::image('photo', 'Photo')->required();
@@ -187,7 +191,7 @@ Admin::model(\App\models\Operation::class)
     ->as('Operations')
     ->columns(function ()
     {
-        Column::string('libelle', 'Activité');
+        Column::string('libelle', 'Operation');
         Column::string('description', 'Description');
     })
     ->form(function ()
@@ -217,6 +221,42 @@ Admin::model(\App\models\PatientOperation::class)
         FormItem::select('operation_id', 'Operation')->list('\App\models\Operation')->required();
         FormItem::date('date', 'Date')->required();
         FormItem::textarea('description', 'Description')->required();
+    });
+
+Admin::model(\App\models\Profession::class)
+    ->title('Liste des professions')
+    ->as('Professions')
+    ->columns(function ()
+    {
+        Column::string('libelle', 'Profession');
+        Column::count('patients')->append(
+            Column::filter('profession_id')->model(\App\models\Patient::class)
+        );
+    })
+    ->form(function ()
+    {
+        FormItem::select('libelle', 'Profession')
+            ->list(['Assistanat / Secrétariat / Services administratifs'=>'Assistanat / Secrétariat / Services administratifs',
+                'BTP / Construction / Second oeuvre'=>'BTP / Construction / Second oeuvre',
+                'Commercial / Vente / Distribution'=>'Commercial / Vente / Distribution',
+                'Immobilier'=>'Immobilier',
+                'Comptabilité / Gestion / Finance / Juridique'=>'Comptabilité / Gestion / Finance / Juridique',
+                'Encadrement / Management'=>'Comptabilité / Gestion / Finance / Juridique',
+                'Formation / Education'=>'Formation / Education',
+                'Hotellerie / Restauration / Tourisme'=>'Hotellerie / Restauration / Tourisme',
+                'Domaine viticole'=>'Domaine viticole',
+                'Informatique / Technologies'=>'Informatique / Technologies',
+                'Ingénierie'=>'Ingénierie',
+                'Installation / Maintenance / Réparation'=>'Installation / Maintenance / Réparation',
+                'Logistique / Approvisionnement / Transport'=>'Logistique / Approvisionnement / Transport',
+                'Marketing / Communication'=>'Marketing / Communication',
+                'Industrie / Production'=>'Industrie / Production',
+                'Qualité / Sécurité / Audit'=>'Qualité / Sécurité / Audit',
+                'Ressources Humaines'=>'Ressources Humaines',
+                'Santé / Service à la personne / Social'=>'Santé / Service à la personne / Social',
+                'Fonction publique / Administration'=>'Fonction publique / Administration',
+                'Autre'=>'Autre'])
+            ->required()->unique();;
     });
 
 Admin::model(\App\models\Ville::class)
