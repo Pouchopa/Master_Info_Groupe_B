@@ -3,6 +3,12 @@
 use App\Models\Patient;
 use App\models\PatientActivite;
 use App\models\Activite;
+use App\models\PatientAlimentation;
+use App\models\Alimentation;
+use App\models\PatientOperation;
+use App\models\Operation;
+use App\models\PatientMaladie;
+use App\models\Maladie;
 
 class PatientController extends BaseController {
 
@@ -91,12 +97,23 @@ class PatientController extends BaseController {
         {
             $patientActivites[$i]->activite = (!empty($patientActivites)) ? Activite::getActiviteById($patientActivites[$i]->activite_id) : null;
         }
-        $evenementPatient = null;
-        $patientOperation = null;
-        $patientMaladie = null;
-        $patientAlimentation = null;
+        $patientAlimentations = PatientAlimentation::getPatientAlimentation($userId);
+        for($i = 0; $i < count($patientAlimentations); $i++)
+        {
+            $patientAlimentations[$i]->alimentation = (!empty($patientAlimentations)) ? Alimentation::getAlimentationById($patientAlimentations[$i]->alimentation_id) : null;
+        }
+        $patientMaladies = PatientMaladie::getPatientMaladie($userId);
+        for($i = 0; $i < count($patientMaladies); $i++)
+        {
+            $patientMaladies[$i]->maladie = (!empty($patientMaladies)) ? Maladie::getMaladieById($patientMaladies[$i]->maladie_id) : null;
+        }
+        $patientOperations = PatientOperation::getPatientOperation($userId);
+        for($i = 0; $i < count($patientOperations); $i++)
+        {
+            $patientOperations[$i]->operation = (!empty($patientOperations)) ? Operation::getOperationById($patientOperations[$i]->operation_id) : null;
+        }
 
-        return View::make('patient/patient_show',  compact('patient', 'patientActivites', 'evenementPatient', 'evenement', 'patientOperation', 'operation', 'maladie', 'patientMaladie', 'patientAlimentation'));
+        return View::make('patient/patient_show',  compact('patient', 'patientActivites', 'patientOperations', 'operation', 'maladie', 'patientMaladies', 'patientAlimentations'));
     }
 
     /**
@@ -116,8 +133,23 @@ class PatientController extends BaseController {
         {
             $patientActivites[$i]->activite = (!empty($patientActivites)) ? Activite::getActiviteById($patientActivites[$i]->activite_id) : null;
         }
+        $patientAlimentations = PatientAlimentation::getPatientAlimentation($userId);
+        for($i = 0; $i < count($patientAlimentations); $i++)
+        {
+            $patientAlimentations[$i]->alimentation = (!empty($patientAlimentations)) ? Alimentation::getAlimentationById($patientAlimentations[$i]->alimentation_id) : null;
+        }
+        $patientMaladies = PatientMaladie::getPatientMaladie($userId);
+        for($i = 0; $i < count($patientMaladies); $i++)
+        {
+            $patientMaladies[$i]->maladie = (!empty($patientMaladies)) ? Maladie::getMaladieById($patientMaladies[$i]->maladie_id) : null;
+        }
+        $patientOperations = PatientOperation::getPatientOperation($userId);
+        for($i = 0; $i < count($patientOperations); $i++)
+        {
+            $patientOperations[$i]->operation = (!empty($patientOperations)) ? Operation::getOperationById($patientOperations[$i]->operation_id) : null;
+        }
 
-        return View::make('patient/patient_edit',  compact('patient', 'patientActivites'));
+        return View::make('patient/patient_edit',  compact('patient', 'patientActivites', 'patientAlimentations', 'patientMaladies', 'patientOperations'));
     }
 
     /**

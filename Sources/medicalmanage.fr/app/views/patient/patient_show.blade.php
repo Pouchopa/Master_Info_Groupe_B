@@ -68,38 +68,37 @@
                     Aucune activité enregistrée.
                 @endif
 
-                <h4> Evènements </h4>
-                @if($evenementPatient != null)
-                    <ul>
-                            <li>{{ $evenementPatient->date_evenement }} : {{ $evenement->libelle_evenement }}</li>
-                    </ul>
-                @else
-                    Aucun évènement enregistré.
-                @endif
-
                 <h4> Alimentation </h4>
-                @if($patientAlimentation != null)
-                    <ul>
-                            <li>{{ $patientAlimentation->description }} : {{ $patientAlimentation->alimentation->libelle }}</li>
-                    </ul>
+                 @if(count($patientAlimentations) != 0)
+                    @foreach ($patientAlimentations as $patientAlimentation)
+                        <ul>
+                            <li>{{ $patientAlimentation->alimentation->libelle }}</li>
+                        </ul>
+                    @endforeach
                 @else
                     Aucune alimentation enregistrée.
                 @endif
 
                 <h4> Maladie </h4>
-                @if($patientMaladie != null)
-                    <ul>
-                        <li>{{ $patientMaladie->description }} : {{ $maladie->libelle }}</li>
-                    </ul>
+                 @if(count($patientMaladies) != 0)
+                    @foreach ($patientMaladies as $patientMaladie)
+                        <ul>
+                            <li>{{ $patientMaladie->date }} 
+                                 : {{ $patientMaladie->maladie->libelle }}</li>
+                        </ul>
+                    @endforeach
                 @else
                     Aucune maladie enregistrée.
-                @endif    
+                @endif
 
                 <h4> Opération </h4>
-                @if($patientOperation != null)
-                    <ul>
-                        <li>{{ $patientOperations->date_operation }} : {{ $operation->libelle_operation }}</li>
-                    </ul>
+                 @if(count($patientOperations) != 0)
+                    @foreach ($patientOperations as $patientOperation)
+                        <ul>
+                            <li>{{ $patientOperation->date }} 
+                                 : {{ $patientOperation->operation->libelle }}</li>
+                        </ul>
+                    @endforeach
                 @else
                     Aucune opération enregistrée.
                 @endif

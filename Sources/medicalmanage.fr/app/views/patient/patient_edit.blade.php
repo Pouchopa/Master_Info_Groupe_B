@@ -152,9 +152,7 @@
                                          : {{ $patientActivite->activite->libelle }}
                                     </a>
                                     <a href="{{ url('/patientActivite/delete/' . $patientActivite->id) }}" onclick="return confirm('Voulez-vous vraiment supprimer cette activité ?');">
-                                    
                                         Supprimer
-                                    
                                     </a>
                                 </li>
                             </ul>
@@ -169,29 +167,72 @@
 
                     </a>
 
-                    <h4> Evènements </h4>
-                     <a href="{{url('evenement/create')}}" >
-
-                        Ajouter un évènement
-
-                    </a>
-
                     <h4> Alimentation </h4>
-                     <a href="{{url('alimentation/create')}}">
+                     @if(count($patientAlimentations) != 0)
+                        @foreach ($patientAlimentations as $patientAlimentation)
+                            <ul>
+                                <li><a href="{{url('patientAlimentation/edit/' . $patientAlimentation->id)}}">
+                                        {{ $patientAlimentation->alimentation->libelle }}
+                                    </a>
+                                    <a href="{{ url('/patientAlimentation/delete/' . $patientAlimentation->id) }}" onclick="return confirm('Voulez-vous vraiment supprimer cette alimentation ?');">
+                                        Supprimer
+                                    </a>
+                                </li>
+                            </ul>
+                        @endforeach
+                    @else
+                        Aucune alimentation enregistrée.
+                    @endif
+                    <br />
+                     <a href="{{url('patientAlimentation/create')}}">
 
                         Ajouter une alimentation
 
                     </a>
 
                     <h4> Maladie </h4>
-                     <a href="{{url('maladiechronique/create')}}" >
+                     @if(count($patientMaladies) != 0)
+                        @foreach ($patientMaladies as $patientMaladie)
+                            <ul>
+                                <li><a href="{{url('patientMaladie/edit/' . $patientMaladie->id)}}">
+                                        {{ $patientMaladie->date }} 
+                                         : {{ $patientMaladie->maladie->libelle }}
+                                    </a>
+                                    <a href="{{ url('/patientMaladie/delete/' . $patientMaladie->id) }}" onclick="return confirm('Voulez-vous vraiment supprimer cette maladie ?');">
+                                        Supprimer
+                                    </a>
+                                </li>
+                            </ul>
+                        @endforeach
+                    @else
+                        Aucune maladie enregistrée.
+                    @endif
+                    <br />
+                     <a href="{{url('patientMaladie/create')}}">
 
                         Ajouter une maladie
 
                     </a>
 
                     <h4> Opération </h4>
-                     <a href="{{url('operation/create')}}">
+                     @if(count($patientOperations) != 0)
+                        @foreach ($patientOperations as $patientOperation)
+                            <ul>
+                                <li><a href="{{url('patientOperation/edit/' . $patientOperation->id)}}">
+                                        {{ $patientOperation->date }} 
+                                         : {{ $patientOperation->operation->libelle }}
+                                    </a>
+                                    <a href="{{ url('/patientOperation/delete/' . $patientOperation->id) }}" onclick="return confirm('Voulez-vous vraiment supprimer cette opération ?');">
+                                        Supprimer
+                                    </a>
+                                </li>
+                            </ul>
+                        @endforeach
+                    @else
+                        Aucune opération enregistrée.
+                    @endif
+                    <br />
+                     <a href="{{url('patientOperation/create')}}">
 
                         Ajouter une opération
 

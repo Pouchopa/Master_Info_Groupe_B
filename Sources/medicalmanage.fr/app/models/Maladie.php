@@ -15,6 +15,10 @@ class Maladie extends SleepingOwlModel {
         'created_at',
         'updated_at'
     ];
+
+    public static $rules = array(
+        'libelle'=>'required'
+    );
 	//
     public function patientMaladies()
     {
@@ -35,6 +39,11 @@ class Maladie extends SleepingOwlModel {
     public static function getList()
     {
         return static::lists('libelle', 'id');
+    }
+
+    public static function getMaladieById($id)
+    {
+        return Maladie::findOrFail($id);
     }
 
 }

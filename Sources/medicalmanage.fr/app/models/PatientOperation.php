@@ -19,6 +19,13 @@ class PatientOperation extends SleepingOwlModel {
         'updated_at'
     ];
 
+    public static $rules = array(
+        'date'=>'required',
+        'description'=>'required|alpha_num|min:2',
+        'patient_id'=>'required',
+        'operation_id'=>'required'
+    );
+
     public function patient()
     {
         return $this->belongsTo('App\models\Patient');
@@ -29,4 +36,8 @@ class PatientOperation extends SleepingOwlModel {
         return $this->belongsTo('App\models\Operation');
     }
 
+    public static function getPatientOperation($user_id)
+    {
+        return PatientOperation::where('patient_id', '=', $user_id)->orderBy('date', 'asc')->get();
+    }
 }
