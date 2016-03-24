@@ -14,7 +14,7 @@ class Activite extends SleepingOwlModel {
         'created_at',
         'updated_at'
     ];
-	//
+	
     public function scopeDefaultSort($query)
     {
         return $query->orderBy('libelle', 'asc');
@@ -29,6 +29,12 @@ class Activite extends SleepingOwlModel {
         return static::lists('libelle', 'id');
     }
 
+    public static $rules = array(
+        'libelle'=>'required'
+    );
 
-
+    public static function getActiviteById($id)
+    {
+        return Activite::findOrFail($id);
+    }
 }

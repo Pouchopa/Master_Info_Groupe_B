@@ -141,6 +141,28 @@
                     </div>
 
                     <h4> Activités sportives </h4>
+                    @if(count($patientActivites) != 0)
+                        @foreach ($patientActivites as $patientActivite)
+                            <ul>
+                                <li><a href="{{url('patientActivite/edit/' . $patientActivite->id)}}">
+                                        {{ $patientActivite->dateDebut }} 
+                                            @if($patientActivite->dateFin != null)
+                                                 - {{$patientActivite->dateFin}} 
+                                            @endif
+                                         : {{ $patientActivite->activite->libelle }}
+                                    </a>
+                                    <a href="{{ url('/patientActivite/delete/' . $patientActivite->id) }}" onclick="return confirm('Voulez-vous vraiment supprimer cette activité ?');">
+                                    
+                                        Supprimer
+                                    
+                                    </a>
+                                </li>
+                            </ul>
+                        @endforeach
+                    @else
+                        Aucune activité enregistrée.
+                    @endif
+                    <br />
                      <a href="{{url('patientActivite/create')}}">
 
                         Ajouter une activité sportive

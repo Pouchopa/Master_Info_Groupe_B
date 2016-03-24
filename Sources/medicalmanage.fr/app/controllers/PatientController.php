@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Patient;
+use App\models\PatientActivite;
+use App\models\Activite;
 
 class PatientController extends BaseController {
 
@@ -81,15 +83,20 @@ class PatientController extends BaseController {
      */
     public function getShow()
     {
-    	$id = Auth::user()->id;
-        $patient = $this->model->findOrFail($id);
+    	$userId = Auth::user()->id;
+        $patient = $this->model->findOrFail($userId);
 
-        $activitePatient = null;
+        $patientActivites = PatientActivite::getPatientActivite($userId);
+        for($i = 0; $i < count($patientActivites); $i++)
+        {
+            $patientActivites[$i]->activite = (!empty($patientActivites)) ? Activite::getActiviteById($patientActivites[$i]->activite_id) : null;
+        }
         $evenementPatient = null;
-        $operationPatient = null;
-        $maladiePatient = null;
+        $patientOperation = null;
+        $patientMaladie = null;
+        $patientAlimentation = null;
 
-        return View::make('patient/patient_show',  compact('patient', 'activitePatient', 'evenementPatient', 'evenement', 'operationPatient', 'operation', 'maladie', 'maladiePatient'));
+        return View::make('patient/patient_show',  compact('patient', 'patientActivites', 'evenementPatient', 'evenement', 'patientOperation', 'operation', 'maladie', 'patientMaladie', 'patientAlimentation'));
     }
 
     /**
@@ -99,10 +106,18 @@ class PatientController extends BaseController {
      */
     public function getEdit()
     {
-    	$id = Auth::user()->id;
-        $patient = $this->model->findOrFail($id);
+    	$userId = Auth::user()->id;
+        $patient = $this->model->findOrFail($userId);
 
-        return View::make('patient/patient_edit',  compact('patient'));
+        $patient = $this->model->findOrFail($userId);
+
+        $patientActivites = PatientActivite::getPatientActivite($userId);
+        for($i = 0; $i < count($patientActivites); $i++)
+        {
+            $patientActivites[$i]->activite = (!empty($patientActivites)) ? Activite::getActiviteById($patientActivites[$i]->activite_id) : null;
+        }
+
+        return View::make('patient/patient_edit',  compact('patient', 'patientActivites'));
     }
 
     /**

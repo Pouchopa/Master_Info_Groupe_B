@@ -21,7 +21,6 @@ class PatientActivite extends SleepingOwlModel {
 
 	public static $rules = array(
         'dateDebut'=>'required',
-        'dateFin'=>'required',
         'description'=>'required|alpha_num|min:2',
         'patient_id'=>'required',
         'activite_id'=>'required'
@@ -38,4 +37,8 @@ class PatientActivite extends SleepingOwlModel {
     }
 
 
+    public static function getPatientActivite($user_id)
+    {
+        return PatientActivite::where('patient_id', '=', $user_id)->orderBy('dateDebut', 'asc')->get();
+    }
 }
