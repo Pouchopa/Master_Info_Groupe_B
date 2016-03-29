@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,8 +40,7 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Consultations<span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="{{ url('/patient/dashboard') }}">Voir mes consultations</a></li>
-									<li><a href="{{ url('/patient/dashboard') }}">Ajouter une consultation</a></li>
+									<li><a href="{{ url('/consultation/calendar') }}">Calendrier des consultations</a></li>
 								</ul>
 						</li>
 						<li class="dropdown">

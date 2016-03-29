@@ -26,3 +26,4 @@ Route::controller('operation', 'OperationController');
 Route::controller('patientOperation', 'PatientOperationController');
 Route::controller('maladie', 'MaladieController');
 Route::controller('patientMaladie', 'PatientMaladieController');
+Route::controller('consultation', 'ConsultationController');
