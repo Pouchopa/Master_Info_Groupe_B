@@ -13,7 +13,9 @@
 
             <div class="panel-body"> 
 
-                <span class="pull-right"><img src="{{ URL::to('/') }}/images/patients/{{$patient->photo }}" height="120px" width="160px" /></span>
+                @if($patient->photo != null)
+                    <span class="pull-right"><img src="{{ URL::to('/') }}/images/patients/{{$patient->photo }}" height="120px" width="160px" /></span>
+                @endif
 
                 <p>Pseudo : {{ $patient->pseudo }}</p>
 

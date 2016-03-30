@@ -117,6 +117,7 @@
 
 		function renderCalendar() {
 			$('#calendar').fullCalendar({
+				theme: true,
 				header: {
 					left: 'prev,next today',
 					center: 'title',

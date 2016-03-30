@@ -15,6 +15,10 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+Route::get('/contact', function()
+{
+	return View::make('contact');
+});
 //Route::controller('admin', 'AdminController');
 Route::controller('auth', 'PatientController');
 Route::controller('patient', 'PatientController');
@@ -27,3 +31,4 @@ Route::controller('patientOperation', 'PatientOperationController');
 Route::controller('maladie', 'MaladieController');
 Route::controller('patientMaladie', 'PatientMaladieController');
 Route::controller('consultation', 'ConsultationController');
+Route::controller('douleur', 'DouleurController');
