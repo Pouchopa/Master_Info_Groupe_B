@@ -30,4 +30,9 @@ class Profession extends SleepingOwlModel {
     {
         return static::lists('libelle', 'id');
     }
+
+    public static function getProfessionById($id)
+    {
+        return Profession::findOrFail($id);
+    }
 }

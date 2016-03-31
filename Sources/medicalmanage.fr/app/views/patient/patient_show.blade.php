@@ -13,7 +13,7 @@
 
             <div class="panel-body"> 
 
-                @if($patient->photo != null)
+                @if(!empty($patient->photo))
                     <span class="pull-right"><img src="{{ URL::to('/') }}/images/patients/{{$patient->photo }}" height="120px" width="160px" /></span>
                 @endif
 
@@ -32,6 +32,18 @@
                 <p>Date de naissance : {{ $patient->date_naissance }}</p>
 
                 <p>Email : {{ $patient->email }}</p>
+
+                @if($patient->telephone != 0)
+                    <p>Téléphone : {{ $patient->telephone }}</p>
+                @endif
+
+                @if($patient->ville != null)
+                    <p>Ville : {{ $patient->ville }}</p>
+                @endif
+
+                @if($patient->profession != null)
+                    <p>Profession : {{ $patient->profession }}</p>
+                @endif
 
                 @if($patient->taux_de_graisse != 0)
                     <p>Taux de graisse : {{ $patient->taux_de_graisse }}</p>

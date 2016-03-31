@@ -49,6 +49,24 @@
 
                     </div>
 
+                    <div class="form-group {{ $errors->has('telephone') ? 'has-error' : '' }}">
+
+                        {{ Form::text('telephone', null, ['class' => 'form-control', 'placeholder' => 'Téléphone']) }}
+
+                        {{ $errors->first('telephone', '<small class="help-block">:message</small>') }}
+
+                    </div>
+
+                    <div class="form-group {{ $errors->has('ville_id') ? 'has-error' : '' }}">
+
+                        {{ Form::label('ville_id', 'Opération* :') }}
+
+                        {{ Form::select('ville_id', $villes_options , Input::old('ville_id')) }}
+
+                        {{ $errors->first('ville_id', '<small class="help-block">:message</small>') }}
+
+                    </div>
+
                     <div class="form-group">
 
                         <div class="radio">
@@ -72,6 +90,16 @@
                         {{ $errors->first('date_naissance', '<small class="help-block">:message</small>') }}
 
                     </div>
+
+                    <div class="form-group {{ $errors->has('profession_id') ? 'has-error' : '' }}">
+
+                        {{ Form::label('profession_id', 'Profession* :') }}
+
+                        {{ Form::select('profession_id', $professions_options , Input::old('profession_id')) }}
+
+                        {{ $errors->first('profession_id', '<small class="help-block">:message</small>') }}
+
+                     </div>
 
                     <div class="form-group {{ $errors->has('taux_de_graisse') ? 'has-error' : '' }}">
 
@@ -100,16 +128,6 @@
                         {{ Form::number('masse_osseuse', null, ['min' => '0', 'max' => '100']) }}
 
                         {{ $errors->first('masse_osseuse', '<small class="help-block">:message</small>') }}
-
-                    </div>
-
-                    <div class="form-group {{ $errors->has('heures_travaillees') ? 'has-error' : '' }}">
-
-                        {{ Form::label('heures_travaillees', "Nombre d'heures travaillées :") }}
-
-                        {{ Form::number('heures_travaillees', null, ['min' => '0', 'max' => '100']) }}
-
-                        {{ $errors->first('heures_travaillees', '<small class="help-block">:message</small>') }}
 
                     </div>
 

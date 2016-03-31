@@ -9,6 +9,8 @@ use App\models\PatientOperation;
 use App\models\Operation;
 use App\models\PatientMaladie;
 use App\models\Maladie;
+use App\models\Profession;
+use App\models\Ville;
 
 class PatientController extends BaseController {
 
@@ -113,6 +115,15 @@ class PatientController extends BaseController {
             $patientOperations[$i]->operation = (!empty($patientOperations)) ? Operation::getOperationById($patientOperations[$i]->operation_id) : null;
         }
 
+        if($patient->profession_id != 0) {
+            $profession = Profession::getProfessionById($patient->profession_id);
+            $patient->profession = $profession->libelle;
+        }
+        if($patient->ville_id != 0) {
+            $ville = Ville::getVilleById($patient->ville_id);
+            $patient->ville = $ville->nom;
+        }
+
         return View::make('patient/patient_show',  compact('patient', 'patientActivites', 'patientOperations', 'operation', 'maladie', 'patientMaladies', 'patientAlimentations'));
     }
 
@@ -148,8 +159,12 @@ class PatientController extends BaseController {
         {
             $patientOperations[$i]->operation = (!empty($patientOperations)) ? Operation::getOperationById($patientOperations[$i]->operation_id) : null;
         }
+        $professions_options = array(''=>'');
+        $villes_options = array(''=>'');
+        $professions_options += Profession::orderBy('libelle', 'asc')->lists('libelle','id');
+        $villes_options += Ville::orderBy('nom', 'asc')->lists('nom','id');
 
-        return View::make('patient/patient_edit',  compact('patient', 'patientActivites', 'patientAlimentations', 'patientMaladies', 'patientOperations'));
+        return View::make('patient/patient_edit', array('professions_options' => $professions_options, 'villes_options' => $villes_options),  compact('patient', 'patientActivites', 'patientAlimentations', 'patientMaladies', 'patientOperations'));
     }
 
     /**
@@ -219,8 +234,11 @@ class PatientController extends BaseController {
 		}
 	}
 
-	public function getRegister() {
-    	return View::make('auth/register');
+	public function getRegister() 
+    {
+        $professions_options = Profession::orderBy('libelle', 'asc')->lists('libelle','id');
+        $villes_options = Ville::orderBy('nom', 'asc')->lists('nom','id');
+    	return View::make('auth/register', array('professions_options' => $professions_options, 'villes_options' => $villes_options));
 	}
 
 	public function postRegister() {
@@ -236,6 +254,10 @@ class PatientController extends BaseController {
             $user->prenom = Input::get('prenom');
             $user->sexe = Input::get('sexe');
             $user->date_naissance = Input::get('date_naissance');
+            $user->telephone = Input::get('telephone');
+            $user->nbr_enfants = Input::get('nbr_enfants');
+            $user->profession_id = Input::get('profession_id');
+            $user->ville_id = Input::get('ville_id');
             if (Input::hasFile('avatar'))
             {
                 $destinationPath = public_path() . '/images/patients/';

@@ -20,11 +20,9 @@ class PatientOperationController extends \BaseController {
     public function getCreate()
     {
         // queries the clients db table, orders by client_name and lists client_name and id
-          $operations_options = Operation::orderBy('libelle', 'asc')->lists('libelle','id');
+        $operations_options = Operation::orderBy('libelle', 'asc')->lists('libelle','id');
 
-            return View::make('patientOperation/patientOperation_create', array('operations_options' => $operations_options));
-
-        return View::make('patientOperation/patientOperation_create');
+        return View::make('patientOperation/patientOperation_create', array('operations_options' => $operations_options));
     }
 
 	public function postCreate() {

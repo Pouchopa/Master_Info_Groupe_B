@@ -27,4 +27,8 @@ class Ville extends SleepingOwlModel {
         return static::lists('nom', 'id');
     }
 
+    public static function getVilleById($id)
+    {
+        return Ville::findOrFail($id);
+    }
 }
