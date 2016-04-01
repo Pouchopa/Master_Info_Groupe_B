@@ -4,7 +4,6 @@ use SleepingOwl\Models\SleepingOwlModel;
 
 class Consultation extends SleepingOwlModel {
 
-	//
     protected $table = 'consultations';
 
     protected $fillable = [
@@ -41,5 +40,8 @@ class Consultation extends SleepingOwlModel {
         return $this->hasMany('App\models\ConsultationActe');
     }
 
-
+    public static function getPatientConsultation($user_id)
+    {
+        return Consultation::where('patient_id', '=', $user_id)->orderBy('date', 'asc')->get();
+    }
 }

@@ -32,3 +32,4 @@ Route::controller('maladie', 'MaladieController');
 Route::controller('patientMaladie', 'PatientMaladieController');
 Route::controller('consultation', 'ConsultationController');
 Route::controller('douleur', 'DouleurController');
+Route::controller('contact', 'ContactController');

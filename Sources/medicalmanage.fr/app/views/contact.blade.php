@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="well well-sm">
-                <form class="form-horizontal" method="post">
+                {{ Form::open(['url' => 'contact/contact', 'method' => 'post', 'class' => 'form-horizontal panel']) }} 
                     <fieldset>
                         <legend class="text-center header">Contactez nous</legend>
                         <div class="form-group">
@@ -51,7 +51,7 @@
                             </div>
                         </div>
                     </fieldset>
-                </form>
+                {{ Form::close() }}
             </div>
         </div>
         <div class="col-md-6">

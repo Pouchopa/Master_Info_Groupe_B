@@ -4,10 +4,7 @@ use SleepingOwl\Models\SleepingOwlModel;
 
 class Rdv extends SleepingOwlModel {
 
-	//
     protected $table = 'rdvs';
-
-    public $timestamps = false;
 
     protected $fillable = [
         'patient_id',
@@ -21,10 +18,16 @@ class Rdv extends SleepingOwlModel {
         'updated_at'
     ];
 
+    public static $rules = array(
+        'date' => 'required',
+        'heure' => 'required',
+        'motif' => 'required',
+        'patient_id' => 'required'
+    );
+
     public function patient()
     {
         return $this->belongsTo('App\models\Patient');
     }
-
 
 }

@@ -31,7 +31,7 @@
 
                         <div class="form-group {{ $errors->has('maladie_id') ? 'has-error' : '' }}">
 
-                            {{ Form::label('maladie_id', 'Activité* :') }}
+                            {{ Form::label('maladie_id', 'Maladie* :') }}
 
                             {{ Form::select('maladie_id', $maladies_options , Input::old('maladie_id')) }}
 

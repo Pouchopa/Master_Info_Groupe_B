@@ -226,7 +226,7 @@ class PatientController extends BaseController {
 
 	public function postLogin() {
     	if (Auth::attempt(array('email'=>Input::get('email'), 'password'=>Input::get('password')))) {
-		    return Redirect::to('patient/dashboard')->with('message', 'Vous êtes maintenant connecté.');
+		    return Redirect::to('/')->with('message', 'Vous êtes maintenant connecté.');
 		} else {
 		    return Redirect::to('auth/login')
 		        ->with('message', 'Votre email ou mot de passe est incorrect')
