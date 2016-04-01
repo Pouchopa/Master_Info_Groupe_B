@@ -32,4 +32,15 @@ class Consultation extends SleepingOwlModel {
         return $this->belongsTo('App\models\Maladie');
     }
 
+    public function actes()
+    {
+        return $this->belongsToMany('App\Acte');
+    }
+
+    public function consultationActes()
+    {
+        return $this->hasMany('App\models\ConsultationActe');
+    }
+
+
 }

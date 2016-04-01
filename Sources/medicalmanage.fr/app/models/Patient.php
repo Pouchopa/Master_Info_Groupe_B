@@ -102,6 +102,11 @@ class Patient extends SleepingOwlModel implements ModelWithImageFieldsInterface,
         return $this->hasMany('App\models\PatientActivite');
     }
 
+    public function patientMaladieChroniques()
+    {
+        return $this->hasMany('App\models\PatientMaladieChronique');
+    }
+
     public function patientMaladies()
     {
         return $this->hasMany('App\models\PatientMaladie');
