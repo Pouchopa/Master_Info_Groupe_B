@@ -21,7 +21,6 @@ class Consultation extends SleepingOwlModel {
         'updated_at'
     ];
 
-    public $timestamps = false;
 
     public function patient()
     {
