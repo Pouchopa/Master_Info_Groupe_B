@@ -254,7 +254,7 @@ class PatientController extends BaseController {
             $user->prenom = Input::get('prenom');
             $user->sexe = Input::get('sexe');
             $user->date_naissance = Input::get('date_naissance');
-            $user->telephone = Input::get('telephone');
+            $user->numero_tel = Input::get('telephone');
             $user->nbr_enfants = Input::get('nbr_enfants');
             $user->profession_id = Input::get('profession_id');
             $user->ville_id = Input::get('ville_id');
