@@ -25,8 +25,8 @@
       <file leaf-file-name="dummy.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vendor/sleeping-owl/admin/src/views/dummy.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6361632">
-              <caret line="91" column="38" selection-start-line="91" selection-start-column="38" selection-end-line="91" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.8213892">
+              <caret line="285" column="65" selection-start-line="285" selection-start-column="65" selection-end-line="285" selection-end-column="65" />
               <folding />
             </state>
           </provider>
@@ -666,8 +666,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/sleeping-owl/admin/src/views/dummy.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6361632">
-          <caret line="91" column="38" selection-start-line="91" selection-start-column="38" selection-end-line="91" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.8213892">
+          <caret line="285" column="65" selection-start-line="285" selection-start-column="65" selection-end-line="285" selection-end-column="65" />
           <folding />
         </state>
       </provider>
