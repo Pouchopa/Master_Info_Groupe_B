@@ -22,20 +22,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="dummy.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="dummy.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vendor/sleeping-owl/admin/src/views/dummy.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="255" column="6" selection-start-line="255" selection-start-column="6" selection-end-line="255" selection-end-column="6" />
+            <state vertical-scroll-proportion="0.6361632">
+              <caret line="91" column="38" selection-start-line="91" selection-start-column="38" selection-end-line="91" selection-end-column="38" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bootstrap.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="bootstrap.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/admin/bootstrap.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6870311">
+            <state vertical-scroll-proportion="-15.740741">
               <caret line="278" column="67" selection-start-line="278" selection-start-column="67" selection-end-line="278" selection-end-column="67" />
               <folding />
             </state>
@@ -93,8 +93,8 @@
         <option value="$PROJECT_DIR$/app/admin/menu.php" />
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/app/config/app.php" />
-        <option value="$PROJECT_DIR$/vendor/sleeping-owl/admin/src/views/dummy.blade.php" />
         <option value="$PROJECT_DIR$/app/admin/bootstrap.php" />
+        <option value="$PROJECT_DIR$/vendor/sleeping-owl/admin/src/views/dummy.blade.php" />
       </list>
     </option>
   </component>
@@ -594,6 +594,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="103.81481">
           <caret line="450" column="50" selection-start-line="450" selection-start-column="49" selection-end-line="450" selection-end-column="50" />
+          <folding>
+            <marker date="1458402831000" expanded="true" signature="13901:13905" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -653,18 +656,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/sleeping-owl/admin/src/views/dummy.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/admin/bootstrap.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="255" column="6" selection-start-line="255" selection-start-column="6" selection-end-line="255" selection-end-column="6" />
+        <state vertical-scroll-proportion="-15.740741">
+          <caret line="278" column="67" selection-start-line="278" selection-start-column="67" selection-end-line="278" selection-end-column="67" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/admin/bootstrap.php">
+    <entry file="file://$PROJECT_DIR$/vendor/sleeping-owl/admin/src/views/dummy.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6870311">
-          <caret line="278" column="67" selection-start-line="278" selection-start-column="67" selection-end-line="278" selection-end-column="67" />
+        <state vertical-scroll-proportion="0.6361632">
+          <caret line="91" column="38" selection-start-line="91" selection-start-column="38" selection-end-line="91" selection-end-column="38" />
           <folding />
         </state>
       </provider>
