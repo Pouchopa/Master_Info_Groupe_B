@@ -133,6 +133,10 @@ return array(
 
 		'Intervention\Image\ImageServiceProvider',
 
+		//lavachart
+		'Khill\Lavacharts\Laravel\LavachartsServiceProvider',
+
+
 	),
 
 	/*

@@ -185,6 +185,38 @@ Admin::model(\App\models\PatientActivite::class)
         FormItem::textarea('description', 'description')->required();
     });
 
+Admin::model(\App\models\MaladieChronique::class)
+    ->title('Liste des maladies chronique')
+    ->as('MaladieChroniques')
+    ->columns(function ()
+    {
+        Column::string('libelle', 'Maladie');
+        Column::string('description', 'description');
+    })
+    ->form(function ()
+    {
+        FormItem::text('libelle', 'Maladie')->required();
+        FormItem::textarea('description', 'description')->required();
+    });
+
+Admin::model(\App\models\PatientMaladieChronique::class)
+    ->title('Patients et leurs maladie chronique')
+    ->as('PatientMaladieChroniques')
+    ->filters(function ()
+    {
+        ModelItem::filter('patient_id')->title()->from('\App\models\Patient', 'email');
+        ModelItem::filter('maladieChronique_id')->title()->from('\App\models\MaladieChronique', 'libelle');
+    })
+    ->columns(function ()
+    {
+        Column::string('patient.email', 'Patient')->append(Column::filter('patient_id')->value('patient.id'));
+        Column::string('maladieChronique.libelle', 'Maladie')->append(Column::filter('maladieChronique_id')->value('maladieChronique.id'));
+    })
+    ->form(function ()
+    {
+        FormItem::select('patient_id', 'Patient')->list('\App\models\Patient')->required();
+        FormItem::select('maladieChronique_id', 'Maladie')->list('\App\models\MaladieChronique')->required();
+    });
 
 Admin::model(\App\models\Operation::class)
     ->title('Liste des opérations')
@@ -236,25 +268,15 @@ Admin::model(\App\models\Profession::class)
     ->form(function ()
     {
         FormItem::select('libelle', 'Profession')
-            ->list(['Assistanat / Secrétariat / Services administratifs'=>'Assistanat / Secrétariat / Services administratifs',
-                'BTP / Construction / Second oeuvre'=>'BTP / Construction / Second oeuvre',
-                'Commercial / Vente / Distribution'=>'Commercial / Vente / Distribution',
+            ->list(['Services administratifs'=>'Services administratifs',
                 'Immobilier'=>'Immobilier',
-                'Comptabilité / Gestion / Finance / Juridique'=>'Comptabilité / Gestion / Finance / Juridique',
-                'Encadrement / Management'=>'Comptabilité / Gestion / Finance / Juridique',
                 'Formation / Education'=>'Formation / Education',
-                'Hotellerie / Restauration / Tourisme'=>'Hotellerie / Restauration / Tourisme',
+                'Hotellerie / Restauration'=>'Hotellerie / Restauration',
                 'Domaine viticole'=>'Domaine viticole',
                 'Informatique / Technologies'=>'Informatique / Technologies',
-                'Ingénierie'=>'Ingénierie',
-                'Installation / Maintenance / Réparation'=>'Installation / Maintenance / Réparation',
-                'Logistique / Approvisionnement / Transport'=>'Logistique / Approvisionnement / Transport',
-                'Marketing / Communication'=>'Marketing / Communication',
+                'Maintenance / Réparation'=>'Maintenance / Réparation',
+                'Logistique / Transport'=>'Logistique / Transport',
                 'Industrie / Production'=>'Industrie / Production',
-                'Qualité / Sécurité / Audit'=>'Qualité / Sécurité / Audit',
-                'Ressources Humaines'=>'Ressources Humaines',
-                'Santé / Service à la personne / Social'=>'Santé / Service à la personne / Social',
-                'Fonction publique / Administration'=>'Fonction publique / Administration',
                 'Autre'=>'Autre'])
             ->required()->unique();;
     });

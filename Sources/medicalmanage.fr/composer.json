@@ -11,7 +11,8 @@
 		"laravel/framework": "4.2.*",
 		"sleeping-owl/admin": "1.*",
 		"sleeping-owl/route-priority": "1.*",
-		"intervention/image": "dev-master"
+		"intervention/image": "dev-master",
+		"khill/lavacharts" : "3.0.*"
 	},
 	"autoload": {
 		"classmap": [

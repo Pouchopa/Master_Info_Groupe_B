@@ -25,5 +25,7 @@ Admin::menu(\App\models\Operation::class)->icon('fa fa-ambulance');
 Admin::menu(\App\models\PatientOperation::class)->icon('fa fa-ambulance');
 Admin::menu(\App\models\Activite::class)->icon('fa fa-life-ring');
 Admin::menu(\App\models\PatientActivite::class)->icon('fa fa-life-ring');
+Admin::menu(\App\models\MaladieChronique::class)->icon('fa fa-globe');
+Admin::menu(\App\models\PatientMaladieChronique::class)->icon('fa fa-globe');
 Admin::menu(\App\models\Profession::class)->icon('fa fa-briefcase');
 Admin::menu(\App\models\Ville::class)->icon('fa fa-globe');
