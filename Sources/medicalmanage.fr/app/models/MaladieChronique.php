@@ -30,4 +30,14 @@ class MaladieChronique extends SleepingOwlModel {
         return static::lists('libelle', 'id');
     }
 
+    public static $rules = array(
+        'libelle'=>'required'
+    );
+
+    public static function getMaladieChroniqueById($id)
+    {
+        return MaladieChronique::findOrFail($id);
+    }
+
+
 }

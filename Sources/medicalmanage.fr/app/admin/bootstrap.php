@@ -129,25 +129,6 @@ Admin::model(\App\models\Maladie::class)
         FormItem::textarea('description', 'Description')->required();
     });
 
-Admin::model(\App\models\PatientMaladie::class)
-    ->title('Patients et leurs maladies')
-    ->as('PatientMaladies')
-    ->filters(function ()
-    {
-        ModelItem::filter('patient_id')->title()->from('\App\models\Patient', 'email');
-        ModelItem::filter('maladie_id')->title()->from('\App\models\Maladie', 'libelle');
-    })
-    ->columns(function ()
-    {
-        Column::string('patient.email', 'Patient')->append(Column::filter('patient_id')->value('patient.id'));
-        Column::string('maladie.libelle', 'Maladie')->append(Column::filter('maladie_id')->value('maladie.id'));
-    })
-    ->form(function ()
-    {
-        FormItem::select('patient_id', 'Patient')->list('\App\models\Patient')->required();
-        FormItem::select('maladie_id', 'Maladie')->list('\App\models\Maladie')->required();
-    });
-
 Admin::model(\App\models\Activite::class)
     ->title('Liste des activités')
     ->as('Activites')
@@ -228,7 +209,7 @@ Admin::model(\App\models\Operation::class)
     })
     ->form(function ()
     {
-        FormItem::text('libelle', 'Activité')->required();
+        FormItem::text('libelle', 'Opération')->required();
         FormItem::textarea('description', 'Description')->required();
     });
 
