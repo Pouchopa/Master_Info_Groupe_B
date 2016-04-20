@@ -72,11 +72,13 @@ Admin::model(\App\models\Consultation::class)
     {
         ModelItem::filter('patient_id')->title()->from('\App\models\Patient', 'email');
         ModelItem::filter('maladie_id')->title()->from('\App\models\Maladie', 'libelle');
+        ModelItem::filter('acte_id')->title()->from('\App\models\Acte', 'libelle');
     })
     ->columns(function ()
     {
         Column::string('patient.email', 'Patient')->append(Column::filter('patient_id')->value('patient.id'));
         Column::string('maladie.libelle', 'Maladie')->append(Column::filter('maladie_id')->value('maladie.id'));
+        Column::string('acte.libelle', 'Acte')->append(Column::filter('acte_id')->value('acte.id'));
         Column::date('date', 'Date consultation');
         Column::string('description', 'Description');
         Column::string('commentaireKine', 'Commentaire kine');
@@ -86,6 +88,7 @@ Admin::model(\App\models\Consultation::class)
     {
         FormItem::select('patient_id', 'Patient')->list('\App\models\Patient')->required();
         FormItem::select('maladie_id', 'Maladie')->list('\App\models\Maladie')->required();
+        FormItem::select('acte_id', 'Acte')->list('\App\models\Acte')->required();
         FormItem::date('date', 'Date consultation')->required();
         FormItem::textarea('description', 'Description')->required();
         FormItem::textarea('commentaireKine', 'Commentaire kine')->required();
@@ -127,6 +130,18 @@ Admin::model(\App\models\Maladie::class)
     {
         FormItem::text('libelle', 'Maladie')->required();
         FormItem::textarea('description', 'Description')->required();
+    });
+
+Admin::model(\App\models\Acte::class)
+    ->title('Liste des actes')
+    ->as('Actes')
+    ->columns(function ()
+    {
+        Column::string('libelle', 'Actes');
+    })
+    ->form(function ()
+    {
+        FormItem::text('libelle', 'Acte')->required();
     });
 
 Admin::model(\App\models\Activite::class)

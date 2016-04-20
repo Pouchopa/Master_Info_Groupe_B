@@ -23,7 +23,7 @@ class MaladieController extends BaseController {
 
 	public function postCreate() {
 	    $validator = Validator::make(Input::all(), Maladie::$rules);
-	 
+
 	    if ($validator->passes()) {
 	        // validation has passed, save patient in DB
 	        $maladie = new Maladie;
