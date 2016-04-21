@@ -30,6 +30,8 @@ Route::controller('operation', 'OperationController');
 Route::controller('patientOperation', 'PatientOperationController');
 Route::controller('maladie', 'MaladieController');
 Route::controller('patientMaladie', 'PatientMaladieController');
+Route::controller('maladieChronique', 'MaladieChroniqueController');
+Route::controller('patientMaladieChronique', 'PatientMaladieChroniqueController');
 Route::controller('consultation', 'ConsultationController');
 Route::controller('douleur', 'DouleurController');
 Route::controller('contact', 'ContactController');

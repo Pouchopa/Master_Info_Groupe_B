@@ -34,7 +34,7 @@
 							</div>
 						</div>
 
-						<div class="form-group">
+						<!--<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">
 								<div class="checkbox">
 									<label>
@@ -42,7 +42,7 @@
 									</label>
 								</div>
 							</div>
-						</div>
+						</div> !-->
 
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -50,7 +50,7 @@
 							<div class="col-md-6 col-md-offset-4">
 								<button type="submit" class="btn btn-primary">Connexion</button>
 
-								<a class="btn btn-link" href="{{ url('/password/email') }}">Mot de passe oublié ?</a>
+								<!-- <a class="btn btn-link" href="{{ url('/password/email') }}">Mot de passe oublié ?</a> !-->
 							</div>
 						</div>
 					</form>

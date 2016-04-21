@@ -102,7 +102,7 @@
                                 <h4 class="pull-right"></h4>
                                 <h4><a href="#">Onde de Choc</a>
                                 </h4>
-                                <p>Epaule Douloureuse,Epine calcanéenne,Epypycondilite,Tendinose</p>
+                                <p>Epaule Douloureuse, Epine calcanéenne, Epypycondilite, Tendinose</p>
                             </div>
                             <div class="ratings">
                                 <p class="pull-right"></p>

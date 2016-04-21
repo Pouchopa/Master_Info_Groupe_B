@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <div class="col-sm-offset-4 col-sm-4">
+    <div class="col-sm-offset-2 col-sm-8 col-md-offset-4 col-md-4 col-lg-offset-2 col-lg-8">
 
         <br>
 
@@ -97,8 +97,8 @@
                  @if(count($patientMaladies) != 0)
                     @foreach ($patientMaladies as $patientMaladie)
                         <ul>
-                            <li>{{ $patientMaladie->date }} 
-                                 : {{ $patientMaladie->maladie->libelle }}</li>
+                            <li>{{ $patientMaladie->maladie->libelle }} : 
+                                {{ $patientMaladie->description }}</li>
                         </ul>
                     @endforeach
                 @else
@@ -109,8 +109,8 @@
                  @if(count($patientOperations) != 0)
                     @foreach ($patientOperations as $patientOperation)
                         <ul>
-                            <li>{{ $patientOperation->date }} 
-                                 : {{ $patientOperation->operation->libelle }}</li>
+                            <li>{{ $patientOperation->operation->libelle }}
+                                 : {{ $patientOperation->description }} </li>
                         </ul>
                     @endforeach
                 @else

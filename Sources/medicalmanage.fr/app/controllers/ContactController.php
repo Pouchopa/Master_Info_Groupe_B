@@ -19,19 +19,15 @@ class ContactController extends BaseController {
     }
 
 	public function postContact() {
-	    $to      = 'thomas.hannauer@gmail.com';
-		$subject = 'Demande de contact ';
-		$message = 'Bonjour,' . "\n";
-		$message += Input::get('fname') . Input::get('name') . 'vous a contacté via le site de kinésythérapie.' . "\n";
-		$message += 'Son message : ' . Input::get('message') . "\n";
-		$message += 'Vous pouvez le contactez par e-mail : ' . Input::get('email') . ' ou numéro de téléphone : ' . Input::get('telephone') . '.' . "\n";
-		$message += 'Cordialement,' . "\n";
-		$message += 'Le service technique de kinésithérapie.';
-		$headers = 'From: webmaster@kine.com' . "\r\n" .
-		    'Reply-To: webmaster@kine.com' . "\r\n" .
-		    'X-Mailer: PHP/' . phpversion();
 
-		mail($to, $subject, $message, $headers);
+		Mail::send('patient.mails.welcome', array('firstname'=>Input::get('fname'), 
+													'lastname'=>Input::get('name'), 
+													'corps'=>Input::get('message'), 
+													'email'=>Input::get('email'), 
+													'telephone'=>Input::get('phone')
+													), function($message) {
+		    $message->to(Input::get('email'), Input::get('fname').' '.Input::get('name'))->subject('Demande de contact');
+		});
 
 	   	return Redirect::to('contact')->with('message', 'Le message a été envoyé !');
 	}

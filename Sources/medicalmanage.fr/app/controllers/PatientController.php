@@ -8,7 +8,9 @@ use App\models\Alimentation;
 use App\models\PatientOperation;
 use App\models\Operation;
 use App\models\PatientMaladie;
+use App\models\PatientMaladieChronique;
 use App\models\Maladie;
+use App\models\MaladieChronique;
 use App\models\Profession;
 use App\models\Ville;
 
@@ -51,40 +53,6 @@ class PatientController extends BaseController {
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    /*public function store(UtilisateurpatientRequest $request)
-    {
-       // validate
-        $rules = array(
-            'pseudo'       => 'required',
-            'email'      => 'required|email'
-        );
-        $validator = Validator::make(Input::all(), $rules);
-
-        // process the login
-        if ($validator->fails()) {
-            return Redirect::to('patients/create')
-                ->withErrors($validator)
-                ->withInput(Input::except('password'));
-        } else {
-            // store
-            $patient = new Patient;
-            $patient->name       = Input::get('nom');
-            $patient->email      = Input::get('email');
-            $patient->password = Input::get('password');
-            $patient->save();
-
-            // redirect
-            Session::flash('message', 'Successfully created patient!');
-            return Redirect::to('patients')->withOk("L'utilisateur " . $patient->pseudo . " a été créé.");
-        }
-    }*/
-
-    /**
      * Display the specified resource.
      *
      * @return \Illuminate\Http\Response
@@ -104,10 +72,10 @@ class PatientController extends BaseController {
         {
             $patientAlimentations[$i]->alimentation = (!empty($patientAlimentations)) ? Alimentation::getAlimentationById($patientAlimentations[$i]->alimentation_id) : null;
         }
-        $patientMaladies = PatientMaladie::getPatientMaladie($userId);
+        $patientMaladies = PatientMaladieChronique::getPatientMaladieChronique($userId);
         for($i = 0; $i < count($patientMaladies); $i++)
         {
-            $patientMaladies[$i]->maladie = (!empty($patientMaladies)) ? Maladie::getMaladieById($patientMaladies[$i]->maladie_id) : null;
+            $patientMaladies[$i]->maladie = (!empty($patientMaladies)) ? MaladieChronique::getMaladieChroniqueById($patientMaladies[$i]->maladieChronique_id) : null;
         }
         $patientOperations = PatientOperation::getPatientOperation($userId);
         for($i = 0; $i < count($patientOperations); $i++)
@@ -149,10 +117,10 @@ class PatientController extends BaseController {
         {
             $patientAlimentations[$i]->alimentation = (!empty($patientAlimentations)) ? Alimentation::getAlimentationById($patientAlimentations[$i]->alimentation_id) : null;
         }
-        $patientMaladies = PatientMaladie::getPatientMaladie($userId);
+        $patientMaladies = PatientMaladieChronique::getPatientMaladieChronique($userId);
         for($i = 0; $i < count($patientMaladies); $i++)
         {
-            $patientMaladies[$i]->maladie = (!empty($patientMaladies)) ? Maladie::getMaladieById($patientMaladies[$i]->maladie_id) : null;
+            $patientMaladies[$i]->maladie = (!empty($patientMaladies)) ? MaladieChronique::getMaladieChroniqueById($patientMaladies[$i]->maladieChronique_id) : null;
         }
         $patientOperations = PatientOperation::getPatientOperation($userId);
         for($i = 0; $i < count($patientOperations); $i++)
@@ -200,8 +168,6 @@ class PatientController extends BaseController {
         {
             return Redirect::to('patient/edit')->with('message', 'Les erreurs suivantes sont apparues')->withErrors($validator)->withInput();
         }
-
-//        return redirect('utilisateurpatient')->withOk("L'utilisateur " . $request->input('nom') . " a été modifié.");
     }
 
     /**

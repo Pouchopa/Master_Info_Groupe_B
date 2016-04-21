@@ -39,5 +39,4 @@ class MaladieChronique extends SleepingOwlModel {
         return MaladieChronique::findOrFail($id);
     }
 
-
 }

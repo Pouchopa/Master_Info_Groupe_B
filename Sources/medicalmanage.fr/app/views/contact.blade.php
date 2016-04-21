@@ -5,7 +5,7 @@
 
 <div class="container">
 <div class="page-header">
-    <h1>Nous Contacter<br/><small>   Pour plus de renseignements, Veuillez nous contacter</small></h1>
+    <h1>Nous contacter<br/><small>   Pour plus de renseignements, veuillez nous contacter</small></h1>
 </div>
 
 <!-- Contact with Map - START -->

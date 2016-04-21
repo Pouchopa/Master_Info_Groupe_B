@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <div class="col-sm-offset-4 col-sm-4">
+    <div class="col-sm-offset-2 col-sm-6 col-md-offset-2 col-md-8">
 
         <br>
 
@@ -59,7 +59,7 @@
 
                     <div class="form-group {{ $errors->has('ville_id') ? 'has-error' : '' }}">
 
-                        {{ Form::label('ville_id', 'Opération* :') }}
+                        {{ Form::label('ville_id', 'Ville :') }}
 
                         {{ Form::select('ville_id', $villes_options , Input::old('ville_id')) }}
 
@@ -91,11 +91,11 @@
 
                     </div>
 
-                    <div class="form-group {{ $errors->has('profession_id') ? 'has-error' : '' }}">
+                    <div class="form-group {{ $errors->has('profession_id') ? 'has-error' : '' }} col-sm-12">
 
                         {{ Form::label('profession_id', 'Profession* :') }}
 
-                        {{ Form::select('profession_id', $professions_options , Input::old('profession_id')) }}
+                        {{ Form::select('profession_id', $professions_options , Input::old('profession_id'), array('class' => 'form-control input-sm')) }}
 
                         {{ $errors->first('profession_id', '<small class="help-block">:message</small>') }}
 
@@ -212,11 +212,11 @@
                      @if(count($patientMaladies) != 0)
                         @foreach ($patientMaladies as $patientMaladie)
                             <ul>
-                                <li><a href="{{url('patientMaladie/edit/' . $patientMaladie->id)}}">
-                                        {{ $patientMaladie->date }} 
-                                         : {{ $patientMaladie->maladie->libelle }}
+                                <li><a href="{{url('patientMaladieChronique/edit/' . $patientMaladie->id)}}">
+                                        {{ $patientMaladie->maladie->libelle }} 
+                                         : {{ $patientMaladie->description }}
                                     </a>
-                                    <a href="{{ url('/patientMaladie/delete/' . $patientMaladie->id) }}" onclick="return confirm('Voulez-vous vraiment supprimer cette maladie ?');">
+                                    <a href="{{ url('/patientMaladieChronique/delete/' . $patientMaladie->id) }}" onclick="return confirm('Voulez-vous vraiment supprimer cette maladie ?');">
                                         Supprimer
                                     </a>
                                 </li>
@@ -226,7 +226,7 @@
                         Aucune maladie enregistrée.
                     @endif
                     <br />
-                     <a href="{{url('patientMaladie/create')}}">
+                     <a href="{{url('patientMaladieChronique/create')}}">
 
                         Ajouter une maladie
 

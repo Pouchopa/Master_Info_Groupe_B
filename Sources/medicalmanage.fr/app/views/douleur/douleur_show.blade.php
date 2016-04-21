@@ -3,9 +3,9 @@
 
 @section('content')
 
-    <div class="col-sm-offset-3 col-sm-5">
+    <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
 
-        <div class="panel panel-primary">
+        <div class="panel panel-primary row">
 
             <div class="panel-heading">
 
@@ -13,7 +13,7 @@
 
             </div>
 
-            <table class="table">
+            <table class="table col-sm-12" style="word-wrap: break-word;table-layout: fixed;">
 
                 <thead>
 
@@ -52,7 +52,7 @@
                                 <td>{{ $douleur->description }} </td>
 
                                 <td>
-                                    <a href="{{url('douleur/edit/' . $douleur->id)}}" class="btn btn-warning">
+                                    <a href="{{url('douleur/edit/' . $douleur->id)}}" style="white-space: normal" class="btn btn-warning hidden-xs">
                                         <span class="glyphicon glyphicon-pencil"></<span> Modifier
                                     </a>
                                 </td>

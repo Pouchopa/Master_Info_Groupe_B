@@ -8,6 +8,7 @@ class PatientMaladieChronique extends SleepingOwlModel {
 
     protected $fillable = [
         'patient_id',
+        'description',
         'maladieChronique_id'
     ];
 
@@ -18,6 +19,7 @@ class PatientMaladieChronique extends SleepingOwlModel {
 
     public static $rules = array(
         'patient_id'=>'required',
+        'description'=>'required',
         'maladieChronique_id'=>'required'
     );
 
@@ -29,6 +31,11 @@ class PatientMaladieChronique extends SleepingOwlModel {
     public function maladieChronique()
     {
         return $this->belongsTo('App\models\MaladieChronique');
+    }
+
+    public static function getPatientMaladieChronique($user_id)
+    {
+        return PatientMaladieChronique::where('patient_id', '=', $user_id)->orderBy('description', 'asc')->get();
     }
 
 }

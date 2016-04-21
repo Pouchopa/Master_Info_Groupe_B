@@ -1,6 +1,7 @@
 <?php namespace App\models;
 
 use SleepingOwl\Models\SleepingOwlModel;
+use App\models\Acte;
 
 class ConsultationActe extends SleepingOwlModel {
 
@@ -31,6 +32,19 @@ class ConsultationActe extends SleepingOwlModel {
     public function acte()
     {
         return $this->belongsTo('App\models\Acte');
+    }
+
+    public static function getActeConsultationById($id)
+    {
+        $consultationsActe = ConsultationActe::where('consultation_id', '=', $id)->get();
+
+        $consultationsActes = array();
+        foreach ($consultationsActe as $acte) {
+            $actes = Acte::where('id', '=', $acte['acte_id'])->get();
+            array_push($consultationsActes, $actes);
+        }
+
+        return $consultationsActes;
     }
 
 }

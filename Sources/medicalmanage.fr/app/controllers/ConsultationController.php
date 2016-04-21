@@ -2,6 +2,8 @@
 
 use App\models\Patient;
 use App\models\Consultation;
+use App\models\ConsultationActe;
+use App\models\Maladie;
 use App\models\Rdv;
 
 class ConsultationController extends BaseController {
@@ -34,6 +36,11 @@ class ConsultationController extends BaseController {
         $patient = Patient::findOrFail($userId);
 
         $patientConsultations = Consultation::getPatientConsultation($userId);
+        for($i = 0; $i < count($patientConsultations); $i++)
+        {
+            $patientConsultations[$i]->maladie = (!empty($patientConsultations)) ? Maladie::getMaladieById($patientConsultations[$i]->maladie_id) : null;
+            $patientConsultations[$i]->acte = (!empty($patientConsultations)) ? ConsultationActe::getActeConsultationById($patientConsultations[$i]->id) : null;
+        }
 
         return View::make('consultation/consultation_show', compact('patientConsultations'));
     }
@@ -46,6 +53,39 @@ class ConsultationController extends BaseController {
         $consultation = $this->model->findOrFail($id);
 
         return View::make('consultation/consultation_edit',  compact('consultation'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function putUpdate($id)
+    {
+        $rules = array(
+            'commentairePatient' => 'required'
+        );
+
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+
+            $consultation = Consultation::findOrFail($id);
+
+            if ( $consultation->update(Input::all()))
+            {
+                return Redirect::to('consultation/show')->with('success', 'Profil modifié');
+            } 
+            else 
+            {
+                return Redirect::back()->with('fail', 'Une erreur est survenue lors de la modification. Veuilez réessayer')->withInput();
+            }
+        }
+        else
+        {
+            return Redirect::to('consultation/edit/' . $id)->with('message', 'Les erreurs suivantes sont apparues')->withErrors($validator)->withInput();
+        }
     }
 
     /**
