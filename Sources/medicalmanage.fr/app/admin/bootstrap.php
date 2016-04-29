@@ -57,7 +57,7 @@ Admin::model(\App\models\Patient::class)
         FormItem::text('prenom', 'Prénom')->required();
         FormItem::image('photo', 'Photo')->required();
         FormItem::text('email', 'E-mail')->required()->unique();
-        FormItem::text('numero_tel', 'Téléphone')->required();
+        FormItem::text('numero_tel', 'Téléphone')->required()->unique();
         FormItem::select('sexe', 'Sexe')->list(['Homme'=>'Homme','Femme'=>'Femme','Autre'=>'Autre'])->required();
         FormItem::date('date_naissance', 'Date de naissance')->required();
         FormItem::select('situation_familiale', 'Situation familiale')->list(['Marié(e)'=>'Marié(e)','Divorcé(e)'=>'Divorcé(e)','Pacsé(e)'=>'Pacsé(e)', 'En couple'=>'En couple', 'Célibataire'=>'Célibataire', 'Autre'=>'Autre'])->required();
@@ -114,7 +114,7 @@ Admin::model(\App\models\Rdv::class)
     {
         FormItem::select('patient_id', 'Patient')->list('\App\models\Patient')->required();
         FormItem::date('date', 'Date rendez-vous')->required();
-        FormItem::time('heure', 'Heure')->required();
+        FormItem::time('heure', 'Heure')->required()->unique();
         FormItem::textarea('motif', 'Motif')->required();
     });
 
@@ -141,7 +141,7 @@ Admin::model(\App\models\Acte::class)
     })
     ->form(function ()
     {
-        FormItem::text('libelle', 'Acte')->required();
+        FormItem::text('libelle', 'Acte')->required()->unique();
     });
 
 Admin::model(\App\models\Activite::class)
@@ -181,6 +181,25 @@ Admin::model(\App\models\PatientActivite::class)
         FormItem::textarea('description', 'description')->required();
     });
 
+Admin::model(\App\models\PatientMaladieChronique::class)
+    ->title('Patients et leurs maladie chronique')
+    ->as('PatientMaladieChroniques')
+    ->filters(function ()
+    {
+        ModelItem::filter('patient_id')->title()->from('\App\models\Patient', 'email');
+        ModelItem::filter('maladieChronique_id')->title()->from('\App\models\MaladieChronique', 'libelle');
+    })
+    ->columns(function ()
+    {
+        Column::string('patient.email', 'Patient')->append(Column::filter('patient_id')->value('patient.id'));
+        Column::string('maladieChronique.libelle', 'MaladieChronique')->append(Column::filter('maladieChronique_id')->value('maladieChronique.id'));
+    })
+    ->form(function ()
+    {
+        FormItem::select('patient_id', 'Patient')->list('\App\models\Patient')->required();
+        FormItem::select('maladieChronique_id', 'MaladieChronique')->list('\App\models\MaladieChronique')->required();
+    });
+
 Admin::model(\App\models\MaladieChronique::class)
     ->title('Liste des maladies chronique')
     ->as('MaladieChroniques')
@@ -193,25 +212,6 @@ Admin::model(\App\models\MaladieChronique::class)
     {
         FormItem::text('libelle', 'Maladie')->required();
         FormItem::textarea('description', 'description')->required();
-    });
-
-Admin::model(\App\models\PatientMaladieChronique::class)
-    ->title('Patients et leurs maladie chronique')
-    ->as('PatientMaladieChroniques')
-    ->filters(function ()
-    {
-        ModelItem::filter('patient_id')->title()->from('\App\models\Patient', 'email');
-        ModelItem::filter('maladieChronique_id')->title()->from('\App\models\MaladieChronique', 'libelle');
-    })
-    ->columns(function ()
-    {
-        Column::string('patient.email', 'Patient')->append(Column::filter('patient_id')->value('patient.id'));
-        Column::string('maladieChronique.libelle', 'Maladie')->append(Column::filter('maladieChronique_id')->value('maladieChronique.id'));
-    })
-    ->form(function ()
-    {
-        FormItem::select('patient_id', 'Patient')->list('\App\models\Patient')->required();
-        FormItem::select('maladieChronique_id', 'Maladie')->list('\App\models\MaladieChronique')->required();
     });
 
 Admin::model(\App\models\Operation::class)
@@ -263,18 +263,7 @@ Admin::model(\App\models\Profession::class)
     })
     ->form(function ()
     {
-        FormItem::select('libelle', 'Profession')
-            ->list(['Services administratifs'=>'Services administratifs',
-                'Immobilier'=>'Immobilier',
-                'Formation / Education'=>'Formation / Education',
-                'Hotellerie / Restauration'=>'Hotellerie / Restauration',
-                'Domaine viticole'=>'Domaine viticole',
-                'Informatique / Technologies'=>'Informatique / Technologies',
-                'Maintenance / Réparation'=>'Maintenance / Réparation',
-                'Logistique / Transport'=>'Logistique / Transport',
-                'Industrie / Production'=>'Industrie / Production',
-                'Autre'=>'Autre'])
-            ->required()->unique();;
+        FormItem::text('libelle', 'Profession')->required()->unique();
     });
 
 Admin::model(\App\models\Ville::class)
@@ -291,7 +280,7 @@ Admin::model(\App\models\Ville::class)
     })
     ->form(function ()
     {
-        FormItem::text('nom', 'Ville')->required();
-        FormItem::text('code_postal', 'Code postal')->required();
-        FormItem::textarea('description', 'Description')->required();
+        FormItem::text('nom', 'Ville')->required()->unique();
+        FormItem::text('code_postal', 'Code postal')->required()->unique();
+        FormItem::textarea('description', 'Description')->required()->unique();
     });

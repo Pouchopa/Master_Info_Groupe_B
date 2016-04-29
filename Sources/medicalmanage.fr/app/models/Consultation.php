@@ -30,14 +30,9 @@ class Consultation extends SleepingOwlModel {
         return $this->belongsTo('App\models\Maladie');
     }
 
-    public function actes()
+    public function acte()
     {
-        return $this->belongsToMany('App\Acte');
-    }
-
-    public function consultationActes()
-    {
-        return $this->hasMany('App\models\ConsultationActe');
+        return $this->belongsTo('App\models\Acte');
     }
 
     public static function getPatientConsultation($user_id)

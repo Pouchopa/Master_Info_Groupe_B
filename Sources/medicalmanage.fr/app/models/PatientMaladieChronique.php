@@ -35,7 +35,7 @@ class PatientMaladieChronique extends SleepingOwlModel {
 
     public static function getPatientMaladieChronique($user_id)
     {
-        return PatientMaladieChronique::where('patient_id', '=', $user_id)->orderBy('description', 'asc')->get();
+        return PatientMaladieChronique::where('patient_id', '=', $user_id)->get();
     }
 
 }

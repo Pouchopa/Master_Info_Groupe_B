@@ -1,7 +1,4 @@
-<?php
-
-namespace App\models;
-
+<?php namespace App\models;
 
 use SleepingOwl\Models\SleepingOwlModel;
 
