@@ -15,7 +15,7 @@
 
                  <div class="col-sm-12">
 
-                    {{ Form::model($patientDouleur, array('url' => array('patientDouleur/update', $patientDouleur->id), 'method' => 'put', 'class' => 'form-horizontal panel')) }}
+                    {{ Form::model($patientDouleur, array('url' => array('douleur/update', $patientDouleur->id), 'method' => 'put', 'class' => 'form-horizontal panel')) }}
 
                         <div class="form-group {{ $errors->has('date') ? 'has-error' : '' }}">
 

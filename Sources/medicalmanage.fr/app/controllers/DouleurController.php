@@ -61,4 +61,41 @@ class DouleurController extends BaseController {
 	        return Redirect::to('douleur/create')->with('message', 'Les erreurs suivantes sont apparues')->withErrors($validator)->withInput();
 	    }
 	}
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function putUpdate($id)
+    {
+        $rules = array(
+            'position' => 'required',
+            'intensite' => 'required',
+            'date' => 'required',
+            'description' => 'required',
+            'patient_id' => 'required'
+        );
+
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+
+            $douleur = Douleur::findOrFail($id);
+
+            if ( $douleur->update(Input::all()))
+            {
+                return Redirect::to('douleur/show')->with('success', 'Douleur modifiée');
+            } 
+            else 
+            {
+                return Redirect::back()->with('fail', 'Une erreur est survenue lors de la modification. Veuilez réessayer')->withInput();
+            }
+        }
+        else
+        {
+            return Redirect::to('douleur/edit/' . $id)->with('message', 'Les erreurs suivantes sont apparues')->withErrors($validator)->withInput();
+        }
+    }
 }
