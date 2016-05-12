@@ -35,6 +35,11 @@ class Consultation extends SleepingOwlModel {
         return $this->belongsTo('App\models\Acte');
     }
 
+    public function scopeDefaultSort($query)
+    {
+        return $query->orderBy('date', 'asc');
+    }
+
     public static function getPatientConsultation($user_id)
     {
         return Consultation::where('patient_id', '=', $user_id)->orderBy('date', 'asc')->get();

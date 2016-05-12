@@ -30,4 +30,9 @@ class Rdv extends SleepingOwlModel {
         return $this->belongsTo('App\models\Patient');
     }
 
+    public function scopeDefaultSort($query)
+    {
+        return $query->orderBy('date', 'asc');
+    }
+
 }

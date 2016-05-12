@@ -70,7 +70,7 @@ Admin::model(\App\models\Consultation::class)
     ->with('patient')
     ->filters(function ()
     {
-        ModelItem::filter('patient_id')->title()->from('\App\models\Patient', 'email');
+        ModelItem::filter('patient_id')->title()->from('\App\models\Patient', 'pseudo');
         ModelItem::filter('maladie_id')->title()->from('\App\models\Maladie', 'libelle');
         ModelItem::filter('acte_id')->title()->from('\App\models\Acte', 'libelle');
     })

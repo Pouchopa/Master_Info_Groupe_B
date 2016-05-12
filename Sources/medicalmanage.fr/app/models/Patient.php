@@ -144,12 +144,12 @@ class Patient extends SleepingOwlModel implements ModelWithImageFieldsInterface,
 
     public function scopeDefaultSort($query)
     {
-        return $query->orderBy('email', 'asc');
+        return $query->orderBy('date_naissance', 'asc');
     }
 
     public static function getList()
     {
-        return static::lists('email', 'id');
+        return static::lists('pseudo' , 'id');
     }
 
 
